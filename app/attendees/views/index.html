@@ -1,0 +1,39 @@
+<div ng-controller="IndexController">
+  <super-navbar>
+    <super-navbar-title>
+      Attendees Index
+    </super-navbar-title>
+  </super-navbar>
+
+  <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
+  <div ng-hide="showSpinner">
+    <ul class="list" ng-hide="attendeess.length == 0">
+
+      <super-navigate location="attendees#show" data-params-id="{{ attendees.id }}" ng-repeat="attendees in attendeess">
+        <li class="item item-icon-right">
+          <img class="profilepic" ng-src="{{attendees['Image URL']}}"></img>
+          <br>
+          <div class="description">
+            <span ng-bind="attendees['Name']"></span>
+            <br>
+            <span class="inline" ng-bind="attendees['Title']"></span> 
+            <p class="inline"> at </p>
+            <span class="inline" ng-bind="attendees['Company']"></span>
+            <i class="icon super-ios-arrow-right"></i>
+          </div>
+        </li>
+      </super-navigate>
+
+    </ul>
+
+    <h4 ng-show="attendeess.length == 0" class="assertive padding">
+      No attendeess found. Create one?
+    </h4>
+
+    <!-- <super-modal-show location="attendees#new">
+      <button class="button button-full button-positive">
+        Create a new attendees
+      </button>
+    </super-modal-show> -->
+  </div>
+</div>

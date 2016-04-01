@@ -1,0 +1,15 @@
+<div ng-controller="NewController">
+  <super-navbar>
+    <super-navbar-button ng-click="cancel()">
+      Cancel
+    </super-navbar-button>
+    <super-navbar-title>
+      New Attendees
+    </super-navbar-title>
+  </super-navbar>
+
+  <div class="padding">
+    <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
+    <form ng-hide="showSpinner" ng-submit="submitForm()" ng-include="'_form.html'"></form>
+  </div>
+</div>
