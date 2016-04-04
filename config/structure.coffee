@@ -9,21 +9,6 @@ module.exports =
       id: "index"
       location: "example#myEvents" 
     }
-    {
-      title: "Settings"
-      id: "settings"
-      location: "example#settings"
-    }
-    {
-      title: "Internet"
-      id: "internet"
-      location: "http://google.com" # URLs are supported!
-    }
-    {
-      title: "Attendees"
-      id: "data"
-      location: "attendees#index"
-    }
   ]
 
   # rootView:
