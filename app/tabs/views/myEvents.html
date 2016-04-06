@@ -1,10 +1,11 @@
-<div class="padding">
-
+<div class="padding" ng-controller="MyEventsController">
   <super-navbar>
     <super-navbar-title>
       My Events
     </super-navbar-title>
   </super-navbar>
+
+  <p>{{events}}</p>
 
   <div class="list card">
     <super-navigate location="attendees#attendees">
@@ -20,3 +21,4 @@
     <super-navigate>
   </div>
 </div>
+

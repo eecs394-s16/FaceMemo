@@ -1,4 +1,4 @@
-angular.module('example', [
+angular.module('tabs', [
   // Declare here all AngularJS dependencies that are shared by the example module.
-  'supersonic'
+  'supersonic', 'common', 'firebase'
 ]);
