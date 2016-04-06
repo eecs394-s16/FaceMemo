@@ -1,0 +1,51 @@
+<div ng-controller="IndexController">
+
+<!DOCTYPE = html>
+<html>
+
+<head>
+<script type="text/javascript" src="http://platform.linkedin.com/in.js">
+  api_key: 77zxhwq7a7556j
+  onLoad: OnLinkedInFrameworkLoad
+  authorize: true
+ </script>
+ </head>
+
+<body>
+<script type="text/javascript">
+function OnLinkedInFrameworkLoad() {
+  IN.Event.on(IN, "auth", OnLinkedInAuth);
+}
+
+function OnLinkedInAuth() {
+    IN.API.Profile("me").result(ShowProfileData);
+}
+
+function ShowProfileData(profiles) {
+    var member = profiles.values[0];
+    var id=member.id;
+    var firstName=member.firstName; 
+    var lastName=member.lastName; 
+    var photo=member.pictureUrl; 
+    var headline=member.headline;
+}
+
+</script>
+
+<script type="in/Login">
+</script>
+
+<div class="padding">
+  <super-navbar>
+    <super-navbar-title>
+      Settings
+    </super-navbar-title>
+  </super-navbar>
+
+<h1 id="testname"></h1>
+ 
+</div>
+</body>
+</html>
+
+</div>
