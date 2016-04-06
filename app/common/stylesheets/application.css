@@ -4,12 +4,36 @@
   font-weight: 600;
 }
 
+.image {
+	width: 45%;
+	height: 40%;
+	display: inline-block;
+	margin: 5% 0% 0% 3%;
+}
+
+.imagesmall {
+	width: 20%;
+	height: 20%;
+	display: inline-block;
+	margin: 5% 0% 0% 3%;
+}
+
+.imagelarge {
+	width: 65%;
+	height: 60%;
+	display: block;
+	margin: 5% 18% 5% 18%;
+}
+
 .profilepic {
-	border-radius: 50%;
-	width: 90px;
-	height: 90px;
+	border-radius: 25%;
+/*	width: 150px;
+	height: 150px;*/
+	max-width:100%;
+	max-height:100%;
 	display: inline-block;
 	float: left;
+	/*margin: 20px 0px 0px 30px;*/
 }
 
 .description {
@@ -20,4 +44,14 @@
 
 .inline {
 	display: inline;
+}
+
+.padding {
+	margin-left: 3%;
+}
+
+.center {
+	text-align: center;
+	display: inline-block;
+	margin: 5% 18% 5% 18%;
 }

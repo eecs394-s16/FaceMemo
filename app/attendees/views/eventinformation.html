@@ -1,27 +1,43 @@
 <div ng-controller="IndexController">
   <super-navbar>
     <super-navbar-title>
-      Attendees Index
+      Event Information
     </super-navbar-title>
   </super-navbar>
+
+  <img class="full-image" src="https://scontent-ord1-1.xx.fbcdn.net/hphotos-xpt1/t31.0-8/12890924_10154101063231289_6196468083804577985_o.jpg">
+  <div class="row">
+    <div class="col">
+      <h2>Spring Recruitment Fair</h2>
+    </div>
+    <button class="col col-20 col-center">Join</button>
+  </div>
+  <div class="padding">
+    <h4>Northwestern University Swift Hall 207</h4>
+    <h4>April 4 2016</h4>
+    <h4>12:00 PM</h4>
+    <p>Big tech firms such as Google, Amazon, and Facebook are recruiting on campus this spring</p>
+    <h3>Attendees</h3>
+  </div>
 
   <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
   <div ng-hide="showSpinner">
     <ul class="list" ng-hide="attendeess.length == 0">
 
       <super-navigate location="attendees#show" data-params-id="{{ attendees.id }}" ng-repeat="attendees in attendeess">
-        <li class="item item-icon-right">
+        <!-- <li class="item item-icon-right"> -->
+        <div class="imagesmall">
           <img class="profilepic" ng-src="{{attendees['Image URL']}}"></img>
-          <br>
-          <div class="description">
+          <!-- <div class="description">
             <span ng-bind="attendees['Name']"></span>
             <br>
             <span class="inline" ng-bind="attendees['Title']"></span> 
             <p class="inline"> at </p>
             <span class="inline" ng-bind="attendees['Company']"></span>
             <i class="icon super-ios-arrow-right"></i>
-          </div>
-        </li>
+          </div> -->
+        <!-- </li> -->
+        </div>
       </super-navigate>
 
     </ul>

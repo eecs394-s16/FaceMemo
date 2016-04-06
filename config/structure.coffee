@@ -5,9 +5,14 @@ module.exports =
   # See styling options for tabs and other native components in app/common/native-styles/ios.css or app/common/native-styles/android.css
   tabs: [
     {
-      title: "MyEvents"
+      title: "My Events"
       id: "index"
-      location: "example#myEvents" 
+      location: "tabs#myEvents" 
+    }
+    {
+      title: "Browse Events"
+      id: "browse"
+      location: "tabs#browseEvents"
     }
   ]
 
