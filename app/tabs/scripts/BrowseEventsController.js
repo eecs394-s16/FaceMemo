@@ -6,7 +6,7 @@ angular
       $scope.events = $firebaseArray(ref);
 
       //pass data into the eventInformation view specifying which event's information to show
-      $scope.saveClickedEvent = function(e) {
+      $scope.clickedEvent = function(e) {
       	var message = {
       		attendees: e.attendees,
       		date: e.date, 

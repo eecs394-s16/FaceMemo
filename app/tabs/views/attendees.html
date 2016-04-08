@@ -9,9 +9,9 @@
   <div ng-hide="showSpinner">
     <ul class="list" ng-hide="attendeess.length == 0">
 
-      <super-navigate location="attendees#show" data-params-id="{{ attendees.id }}" ng-repeat="attendee in attendees">
+      <super-navigate location="tabs#show" ng-repeat="attendee in attendees">
         <!-- <li class="item item-icon-right"> -->
-        <div class="image">
+        <div class="image" ng-click="clickedAttendee(attendee)">
           <img class="profilepic" ng-src="{{attendee.image}}"></img>
           <!-- <div class="description">
             <span ng-bind="attendees['Name']"></span>

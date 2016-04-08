@@ -5,8 +5,6 @@
     </super-navbar-title>
   </super-navbar>
 
-  <p>{{event}}</p>
-
   <img class="full-image" src="{{event.image}}">
   <!--<div class="row">
     <div class="col"> -->
@@ -36,11 +34,16 @@
   <p>{{event.description}}</p>
 </div>
 
-<div class="padding">
+<div>
+  <super-navigate location="tabs#attendees">
+  <a class="button icon-right super-chevron-right button-calm">Attendees</a>
+</super-navigate>
+</div>
+<!-- <div class="padding">
   <h3 >
     Attendees
   </h3>
-</div>
+</div> -->
 
   <!--<div class="padding">
     <h4>Northwestern University Swift Hall 207</h4>
@@ -52,12 +55,12 @@
 
   <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
   <div ng-hide="showSpinner">
-    <ul class="list" ng-hide="attendeess.length == 0">
+    <ul class="list" ng-hide="event.attendees.length == 0">
 
-      <super-navigate location="attendees#show" data-params-id="{{ attendees.id }}" ng-repeat="attendees in attendeess">
+      <super-navigate location="tabs#show" ng-repeat="attendee in event.attendees">
         <!-- <li class="item item-icon-right"> -->
         <div class="imagesmall">
-          <img class="profilepic" ng-src="{{attendees['Image URL']}}"></img>
+          <img class="profilepic" ng-src="{{attendee.image}}"></img>
           <!-- <div class="description">
             <span ng-bind="attendees['Name']"></span>
             <br>
@@ -72,7 +75,7 @@
 
     </ul>
 
-    <h4 ng-show="attendeess.length == 0" class="assertive padding">
+    <h4 ng-show="attendees.length == 0" class="assertive padding">
       No attendeess found. Create one?
     </h4>
 
