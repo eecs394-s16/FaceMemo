@@ -1,0 +1,36 @@
+<div ng-controller="ShowController">
+  <super-navbar>
+    <super-navbar-title>
+      User Info
+    </super-navbar-title>
+  </super-navbar>
+
+  <div class="padding">
+    <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
+    <div ng-hide="showSpinner">
+
+      <div class="imagelarge">
+        <img class="profilepic" ng-src="{{attendees['Image URL']}}"></img>
+      </div>
+
+      <div class="center">
+        <h2 ng-bind="attendees['Name']"></h2>
+        <p>Company: <span ng-bind="attendees['Company']"></span></p> 
+        <p>Title: <span ng-bind="attendees['Title']"></span></p> 
+        <a class="button button-calm" href="{{attendees['LinkedIn URL']}}">Add on Linkedin</a>
+      </div>
+      
+
+
+      <!-- <super-modal-show location="attendees#edit?id={{ attendees.id }}">
+        <button class="button button-block button-positive">
+          Edit
+        </button>
+      </super-modal-show>
+
+      <button ng-click="remove(attendees.id)" class="button button-block button-negative">
+        Remove
+      </button> -->
+    </div>
+  </div>
+</div>

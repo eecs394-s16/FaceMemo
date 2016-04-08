@@ -7,14 +7,14 @@
 
   <p>{{event}}</p>
 
-  <img class="full-image" src="https://scontent-ord1-1.xx.fbcdn.net/hphotos-xpt1/t31.0-8/12890924_10154101063231289_6196468083804577985_o.jpg">
+  <img class="full-image" src="{{event.image}}">
   <!--<div class="row">
     <div class="col"> -->
       <div class=" card">
     <div class="item item-text-wrap">
       <div class="row">
     <div class="col">
-      <h2 class="padding">Spring Recruitment Fair</h2>
+      <h2 class="padding">{{event.name}}</h2>
     </div>
     <!--<button class="col col-20 col-center">Join</button> -->
     <button class="button icon-right super-star ">Join</button>
@@ -24,16 +24,16 @@
 
 <div class="list list-inset">
   <div class="item">
-    April 4 2016 at 12:00pm
+    {{event.date}} at {{event.time}}
   </div>
   <div class="item">
-    Northwestern University Swift Hall 207
+    {{event.location}}
   </div>
   </div>
 
   <div class="card">
     <div class="item item-text-wrap">
-  <p>Big tech firms such as Google, Amazon, and Facebook are recruiting on campus this spring</p>
+  <p>{{event.description}}</p>
 </div>
 
 <div class="padding">
