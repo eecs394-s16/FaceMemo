@@ -6,8 +6,9 @@
     </super-navbar-title>
   </super-navbar>
 
-  <div class="list card" ng-repeat="event in events">
-    <super-navigate location="attendees#eventinformation">
+  <p ng-click="saveClickedEvent("hi")">{{event}}</p>
+  <div class="list card" ng-repeat="event in events" ng-click="saveClickedEvent(event)">
+    <super-navigate location="tabs#eventinformation">
       <div class="item item-body">
         <img class="full-image" src="{{event.image}}">
         <div class="row">
