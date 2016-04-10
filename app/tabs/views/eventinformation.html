@@ -36,7 +36,7 @@
 
 <div>
   <super-navigate location="tabs#attendees">
-  <a class="button icon-right super-chevron-right button-calm">Attendees</a>
+  <a class="button icon-right super-chevron-right button-calm" ng-click="clickedEvent()">Attendees</a>
 </super-navigate>
 </div>
 <!-- <div class="padding">
@@ -57,19 +57,9 @@
   <div ng-hide="showSpinner">
     <ul class="list" ng-hide="event.attendees.length == 0">
 
-      <super-navigate location="tabs#show" ng-repeat="attendee in event.attendees">
-        <!-- <li class="item item-icon-right"> -->
+      <super-navigate location="tabs#show" ng-repeat="attendee in attendees">
         <div class="imagesmall">
-          <img class="profilepic" ng-src="{{attendee.image}}"></img>
-          <!-- <div class="description">
-            <span ng-bind="attendees['Name']"></span>
-            <br>
-            <span class="inline" ng-bind="attendees['Title']"></span> 
-            <p class="inline"> at </p>
-            <span class="inline" ng-bind="attendees['Company']"></span>
-            <i class="icon super-ios-arrow-right"></i>
-          </div> -->
-        <!-- </li> -->
+          <img class="profilepic" ng-src="{{attendee.image}}" ng-click="clickedAttendee(attendee)"></img>
         </div>
       </super-navigate>
 
