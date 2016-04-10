@@ -4,6 +4,22 @@
   font-weight: 600;
 }
 
+.two-col-special {
+    border: 0;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.two-col-special li {
+    display: inline-block;
+    width: 49%;
+    margin: 0;
+    padding: 0;
+    vertical-align: top; /* In case multi-word categories form two lines */
+}
+
+
 .image {
 	width: 45%;
 	height: 40%;

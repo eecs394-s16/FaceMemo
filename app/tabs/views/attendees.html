@@ -20,23 +20,26 @@
       </div>
     </div>
 
-    <ul class="list" ng-hide="attendeess.length == 0">
+    <ul class="list two-col-special" ng-hide="attendeess.length == 0">
+        <super-navigate location="tabs#show" ng-repeat="attendee in attendees | filter: query | orderBy: oderAttendee">
+          <!-- <li class="item item-icon-right"> -->
+          <li ng-click="clickedAttendee(attendee)">
+            <img class="profilepic" ng-src="{{attendee.image}}"></img>
+            <!-- <div class="description">
+              <span ng-bind="attendees['Name']"></span>
+              <br>
+              <span class="inline" ng-bind="attendees['Title']"></span> 
+              <p class="inline"> at </p>
+              <span class="inline" ng-bind="attendees['Company']"></span>
+              <i class="icon super-ios-arrow-right"></i>
+            </div> -->
+          <!-- </li> -->
+            <div class="center">
+              <span class="inline">{{attendee.name}}</span>
+            </div>
+          </li>
 
-      <super-navigate location="tabs#show" ng-repeat="attendee in attendees | filter: query | orderBy: oderAttendee">
-        <!-- <li class="item item-icon-right"> -->
-        <div class="image" ng-click="clickedAttendee(attendee)">
-          <img class="profilepic" ng-src="{{attendee.image}}"></img>
-          <!-- <div class="description">
-            <span ng-bind="attendees['Name']"></span>
-            <br>
-            <span class="inline" ng-bind="attendees['Title']"></span> 
-            <p class="inline"> at </p>
-            <span class="inline" ng-bind="attendees['Company']"></span>
-            <i class="icon super-ios-arrow-right"></i>
-          </div> -->
-        <!-- </li> -->
-        </div>
-      </super-navigate>
+        </super-navigate>
 
     </ul>
 
