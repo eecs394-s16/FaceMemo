@@ -7,9 +7,22 @@
 
   <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
   <div ng-hide="showSpinner">
+    <div class="row">
+      <div class="col">
+        Search: <input ng-model="query">
+      </div>
+      <div class="col-30">
+        <select ng-model="orderAttendee">
+            <option value="name">By Name</option>
+            <option value="company">By Company</option>
+            <option value="title">By Title</option>
+        </select>
+      </div>
+    </div>
+
     <ul class="list" ng-hide="attendeess.length == 0">
 
-      <super-navigate location="tabs#show" ng-repeat="attendee in attendees">
+      <super-navigate location="tabs#show" ng-repeat="attendee in attendees | filter: query | orderBy: oderAttendee">
         <!-- <li class="item item-icon-right"> -->
         <div class="image" ng-click="clickedAttendee(attendee)">
           <img class="profilepic" ng-src="{{attendee.image}}"></img>
