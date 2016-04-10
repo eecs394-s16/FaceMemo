@@ -8,15 +8,26 @@ angular
       //when users gets fetched from firebase, this function runs
       $scope.users.$loaded().then(function(list_of_users) {
       	var attendees = window.localStorage.getItem("list_of_attendees");
-		var list_of_attendees = JSON.parse(attendees);
-		//for each attendee, fetch his record from firebase and push it into $scope.attendees
-      	for (var i = 0; i < list_of_attendees.length; i++)
-		{
-			var user_id = list_of_attendees[i].id;
-			var rec = list_of_users.$getRecord(user_id);
-			$scope.attendees.push(rec);
-		}
-	  })
+		    var list_of_attendees = JSON.parse(attendees);
+    		//for each attendee, fetch his record from firebase and push it into $scope.attendees
+        for (var i = 0; i < list_of_attendees.length; i++)
+    		{
+    			var user_id = list_of_attendees[i].id;
+    			var rec = list_of_users.$getRecord(user_id);
+          //temporarily use defaulRole instead of role registered for each event
+          rec.role = rec.defaultRole;
+    			$scope.attendees.push(rec);
+    		}
+  	  })
+
+      $scope.orderAttendee = 'name';
+
+      $scope.showRole = 'all';
+      //custom filter function for roles
+      $scope.roleFilter = function (user) {
+        if ($scope.showRole === 'all') return true;
+        else return ($scope.showRole === user.role);
+      }
 
       //keeps track of which attendee the user clicks
       $scope.clickedAttendee = function(attendee) {

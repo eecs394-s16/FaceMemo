@@ -7,21 +7,35 @@
 
   <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
   <div ng-hide="showSpinner">
+    <!-- Search box -->
     <div class="row">
       <div class="col">
         Search: <input ng-model="query">
       </div>
-      <div class="col-30">
+    </div>
+    <!-- orders and filters -->
+    <div class="row">
+      <div class="col col-50">
+        Sort
         <select ng-model="orderAttendee">
             <option value="name">By Name</option>
             <option value="company">By Company</option>
             <option value="title">By Title</option>
         </select>
       </div>
+
+      <div class="col col-50">
+        Show
+        <select ng-model="showRole">
+            <option value="all">All</option>
+            <option value="recruiter">Recrutiers</option>
+            <option value="student">Students</option>
+        </select>
+      </div>
     </div>
 
     <ul class="list two-col-special" ng-hide="attendeess.length == 0">
-        <super-navigate location="tabs#show" ng-repeat="attendee in attendees | filter: query | orderBy: oderAttendee">
+        <super-navigate location="tabs#show" ng-repeat="attendee in attendees | filter: query | filter: roleFilter | orderBy: orderAttendee">
           <!-- <li class="item item-icon-right"> -->
           <li ng-click="clickedAttendee(attendee)">
             <img class="profilepic" ng-src="{{attendee.image}}"></img>
