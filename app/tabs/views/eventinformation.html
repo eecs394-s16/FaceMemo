@@ -1,20 +1,18 @@
-<div ng-controller="IndexController">
+<div ng-controller="EventInformationController">
   <super-navbar>
     <super-navbar-title>
       Event Information
     </super-navbar-title>
   </super-navbar>
 
-
-
-  <img class="full-image" src="https://scontent-ord1-1.xx.fbcdn.net/hphotos-xpt1/t31.0-8/12890924_10154101063231289_6196468083804577985_o.jpg">
+  <img class="full-image" src="{{event.image}}">
   <!--<div class="row">
     <div class="col"> -->
       <div class=" card">
     <div class="item item-text-wrap">
       <div class="row">
     <div class="col">
-      <h2 class="padding">Spring Recruitment Fair</h2>
+      <h2 class="padding">{{event.name}}</h2>
     </div>
     <!--<button class="col col-20 col-center">Join</button> -->
     <button class="button icon-right super-star ">Join</button>
@@ -24,23 +22,28 @@
 
 <div class="list list-inset">
   <div class="item">
-    April 4 2016 at 12:00pm
+    {{event.date}} at {{event.time}}
   </div>
   <div class="item">
-    Northwestern University Swift Hall 207
+    {{event.location}}
   </div>
   </div>
 
   <div class="card">
     <div class="item item-text-wrap">
-  <p>Big tech firms such as Google, Amazon, and Facebook are recruiting on campus this spring</p>
+  <p>{{event.description}}</p>
 </div>
 
-<div class="padding">
+<div>
+  <super-navigate location="tabs#attendees">
+  <a class="button icon-right super-chevron-right button-calm">Attendees</a>
+</super-navigate>
+</div>
+<!-- <div class="padding">
   <h3 >
     Attendees
   </h3>
-</div>
+</div> -->
 
   <!--<div class="padding">
     <h4>Northwestern University Swift Hall 207</h4>
@@ -52,12 +55,12 @@
 
   <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
   <div ng-hide="showSpinner">
-    <ul class="list" ng-hide="attendeess.length == 0">
+    <ul class="list" ng-hide="event.attendees.length == 0">
 
-      <super-navigate location="attendees#show" data-params-id="{{ attendees.id }}" ng-repeat="attendees in attendeess">
+      <super-navigate location="tabs#show" ng-repeat="attendee in event.attendees">
         <!-- <li class="item item-icon-right"> -->
         <div class="imagesmall">
-          <img class="profilepic" ng-src="{{attendees['Image URL']}}"></img>
+          <img class="profilepic" ng-src="{{attendee.image}}"></img>
           <!-- <div class="description">
             <span ng-bind="attendees['Name']"></span>
             <br>
@@ -72,7 +75,7 @@
 
     </ul>
 
-    <h4 ng-show="attendeess.length == 0" class="assertive padding">
+    <h4 ng-show="attendees.length == 0" class="assertive padding">
       No attendeess found. Create one?
     </h4>
 

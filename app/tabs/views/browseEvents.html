@@ -1,4 +1,4 @@
-<div class="padding">
+<div class="padding" ng-controller="BrowseEventsController">
 
   <super-navbar>
     <super-navbar-title>
@@ -6,17 +6,17 @@
     </super-navbar-title>
   </super-navbar>
 
-  <div class="list card">
-    <super-navigate location="attendees#eventinformation">
+  <div class="list card" ng-repeat="event in events" ng-click="clickedEvent(event)">
+    <super-navigate location="tabs#eventinformation">
       <div class="item item-body">
-        <img class="full-image" src="https://scontent-ord1-1.xx.fbcdn.net/hphotos-xpt1/t31.0-8/12890924_10154101063231289_6196468083804577985_o.jpg">
+        <img class="full-image" src="{{event.image}}">
         <div class="row">
-          <div class="col col-20 col-center">April 4</div>
+          <div class="col col-20 col-center">{{event.date}}</div>
           <div class="col">
-            <h2>Spring Recruitment Fair</h2>
+            <h2>{{event.name}}</h2>
           </div>
         </div>
       </div>
-    <super-navigate>
+    </super-navigate>
   </div>
 </div>

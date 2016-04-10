@@ -10,14 +10,14 @@
     <div ng-hide="showSpinner">
 
       <div class="imagelarge">
-        <img class="profilepic" ng-src="{{attendees['Image URL']}}"></img>
+        <img class="profilepic" ng-src="{{attendee.image}}"></img>
       </div>
 
       <div class="center">
-        <h2 ng-bind="attendees['Name']"></h2>
-        <p>Company: <span ng-bind="attendees['Company']"></span></p> 
-        <p>Title: <span ng-bind="attendees['Title']"></span></p> 
-        <p>LinkedIn URL: <span ng-bind="attendees['LinkedIn URL']"></span></p> 
+        <h2 ng-bind="attendee.name"></h2>
+        <p>Company: <span ng-bind="attendee.company"></span></p> 
+        <p>Title: <span ng-bind="attendee.title"></span></p> 
+        <a class="button button-calm" href="{{attendee.LinkedinURL}}">Add on Linkedin</a>
       </div>
       
 

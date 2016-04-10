@@ -71,3 +71,7 @@ tab-bar-item#index {
 tab-bar-item#internet {
   background-image: url(icons/search.svg);
 }
+
+tab-bar-item#browse {
+  background-image: url(icons/eventsList.svg);
+}

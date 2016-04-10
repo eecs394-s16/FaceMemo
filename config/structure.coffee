@@ -16,6 +16,8 @@ module.exports =
     }
   ]
 
+
+
   # rootView:
      # location: "attendees#index"
 
