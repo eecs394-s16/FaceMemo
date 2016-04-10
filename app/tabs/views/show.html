@@ -15,9 +15,11 @@
 
       <div class="center">
         <h2 ng-bind="attendee.name"></h2>
-        <p>Company: <span ng-bind="attendee.company"></span></p> 
-        <p>Title: <span ng-bind="attendee.title"></span></p> 
-        <a class="button button-calm" href="{{attendee.LinkedinURL}}">Add on Linkedin</a>
+        <h5>Company: <span ng-bind="attendee.company"></span></h5> 
+        <h5>Title: <span ng-bind="attendee.title"></span></h5>
+        <h5>Phone: <span ng-bind="attendee.phone"></span></h5>  
+        <a class="button button-small button-positive" href="{{attendee.LinkedinURL}}">Add on Linkedin</a>
+        <a class="button button-small button-positive" href="mailto:{{attendee.email}}">Email</a>
       </div>
       
 
