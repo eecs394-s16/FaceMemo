@@ -6,7 +6,17 @@
     </super-navbar-title>
   </super-navbar>
 
-  <div class="list card" ng-repeat="event in events" ng-click="clickedEvent(event)">
+  <!-- Search box -->
+  <div class="row">
+    <div class="col">
+      <span>Search:</span>
+    </div>
+    <div class="col-80">
+       <input ng-model="query">
+    </div>
+  </div>  
+
+  <div class="list card" ng-repeat="event in events | filter: query" ng-click="clickedEvent(event)">
     <super-navigate location="tabs#eventinformation">
       <div class="item item-body">
         <img class="full-image" src="{{event.image}}">

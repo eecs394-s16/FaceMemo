@@ -8,7 +8,12 @@
   <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
   <div ng-hide="showSpinner">
 
-    
+    <div class="titleCenter">
+      <span><h4>{{clickedEvent.name}}</h4></span>
+      <span>{{clickedEvent.date}}</span>
+    </div>
+
+
     <!-- Search box -->
     <div class="row">
       <div class="col">

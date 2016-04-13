@@ -7,8 +7,11 @@ angular
       $scope.attendees = [];
       //when users gets fetched from firebase, this function runs
       $scope.users.$loaded().then(function(list_of_users) {
-      	var attendees = window.localStorage.getItem("list_of_attendees");
-		    var list_of_attendees = JSON.parse(attendees);
+        var eventString = window.localStorage.getItem("clickedEvent");
+      	$scope.clickedEvent = JSON.parse(eventString);
+        // var attendees = window.localStorage.getItem("list_of_attendees");
+		    // var list_of_attendees = JSON.parse(attendees);
+        var list_of_attendees = $scope.clickedEvent.attendees;
     		//for each attendee, fetch his record from firebase and push it into $scope.attendees
         for (var i = 0; i < list_of_attendees.length; i++)
     		{
