@@ -13,11 +13,11 @@
         <img class="profilepic" ng-src="{{attendee.image}}"></img>
       </div>
 
-      <div class="center">
+      <div class="center attendeeinfo">
         <h2 ng-bind="attendee.name"></h2>
-        <h5>Company: <span ng-bind="attendee.company"></span></h5> 
-        <h5>Title: <span ng-bind="attendee.title"></span></h5>
-        <h5>Phone: <span ng-bind="attendee.phone"></span></h5>  
+        <p><strong>Company:</strong> <span ng-bind="attendee.company"></span></p> 
+        <p><strong>Title:</strong> <span ng-bind="attendee.title"></span></p>
+        <p><strong>Phone:</strong> <span ng-bind="attendee.phone"></span></p>  
         <a class="button button-positive" href="{{attendee.LinkedinURL}}">
           <i class="icon fa fa-linkedin"></i>
         </a>

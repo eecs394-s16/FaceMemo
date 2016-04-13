@@ -72,6 +72,10 @@
 	margin: 5% 18% 5% 18%;
 }
 
+.attendeeinfo {
+	font-size: 120%;
+}
+
 .titleCenter {
 	text-align: center;
 	display: inline-block;
