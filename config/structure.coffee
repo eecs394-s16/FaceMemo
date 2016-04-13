@@ -10,16 +10,18 @@ module.exports =
       location: "tabs#myEvents" 
     }
     {
-      title: "Browse Events"
+      title: "Find Events"
       id: "browse"
       location: "tabs#browseEvents"
     }
     {
       title: "Settings"
       id: "settings"
-      location: "settings#index"
+      location: "tabs#settings"
     }
   ]
+
+
 
   # rootView:
      # location: "attendees#index"

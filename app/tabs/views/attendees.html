@@ -1,0 +1,76 @@
+<div ng-controller="AttendeesController">
+  <super-navbar>
+    <super-navbar-title>
+      Attendees
+    </super-navbar-title>
+  </super-navbar>
+
+  <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
+  <div ng-hide="showSpinner">
+
+    <div class="titleCenter">
+      <span><h4>{{clickedEvent.name}}</h4></span>
+      <span>{{clickedEvent.date}}</span>
+    </div>
+
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon super-search placeholder-icon"></i>
+        <input type="text" ng-model="query" placeholder="Search">
+      </label>
+    </div>
+
+    <!-- filters -->
+    <div class="row">
+      <!-- <div class="col">
+        <span>Filters:</span>
+      </div> -->
+
+      <div class="col-6 role">
+        <ul class="list">
+          <li class="item item-checkbox inline" ng-repeat="role in roles">
+            <label class="checkbox">
+              <input type="checkbox" ng-model="role.selected">
+            </label>
+            {{role.roleLabel}}
+          </li>
+        </ul>
+      </div> 
+    </div>
+
+ 
+  <div class="row">
+    <ul class="list two-col-special" ng-hide="attendeess.length == 0">
+        <super-navigate location="tabs#show" ng-repeat="attendee in attendees | filter: query | filter: roleFilter">
+          <!-- <li class="item item-icon-right"> -->
+          <li ng-click="clickedAttendee(attendee)">
+            <img class="profilepic" ng-src="{{attendee.image}}"></img>
+            <!-- <div class="description">
+              <span ng-bind="attendees['Name']"></span>
+              <br>
+              <span class="inline" ng-bind="attendees['Title']"></span> 
+              <p class="inline"> at </p>
+              <span class="inline" ng-bind="attendees['Company']"></span>
+              <i class="icon super-ios-arrow-right"></i>
+            </div> -->
+          <!-- </li> -->
+            <div class="center">
+              <span class="inline">{{attendee.name}}</span>
+            </div>
+          </li>
+
+        </super-navigate>
+
+    </ul>
+
+    <h4 ng-show="attendeess.length == 0" class="assertive padding">
+      No attendeess found. Create one?
+    </h4>
+
+    <!-- <super-modal-show location="attendees#new">
+      <button class="button button-full button-positive">
+        Create a new attendees
+      </button>
+    </super-modal-show> -->
+  </div>
+</div>
