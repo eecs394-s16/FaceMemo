@@ -8,16 +8,21 @@
   <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
   <div ng-hide="showSpinner">
     <div class="row">
-      <div class="col">
-        Search: <input ng-model="query">
-      </div>
       <div class="col-30">
-        <select ng-model="orderAttendee">
-            <option value="name">By Name</option>
-            <option value="company">By Company</option>
-            <option value="title">By Title</option>
+        <select>
+            <option selected>By Name</option>
+            <option>By Company</option>
+            <option>By Title</option>
         </select>
-      </div>
+      </div> 
+
+
+      <div class="col">
+        <i class="icon super-ios-search placeholder-icon"></i>
+         <input ng-model="query" placeholder="Search">
+      </div> 
+
+
     </div>
 
     <ul class="list" ng-hide="attendeess.length == 0">
@@ -51,3 +56,6 @@
     </super-modal-show> -->
   </div>
 </div>
+
+
+
