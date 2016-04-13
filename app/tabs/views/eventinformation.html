@@ -22,7 +22,7 @@
 
 <div class="list list-inset">
   <div class="item">
-    {{event.date}} at {{event.time}}
+    {{event.date | date: 'MMM d'}} at {{event.time}}
   </div>
   <div class="item">
     {{event.location}}

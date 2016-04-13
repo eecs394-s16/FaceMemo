@@ -5,6 +5,13 @@ angular
       //download the data into a local object
       $scope.events = $firebaseArray(ref);
 
+      $scope.events.$loaded().then(function() {
+        for (var i = 0; i < $scope.events.length; i++) {
+          var date = new Date($scope.events[i].date);
+          $scope.events[i].date = date;
+        }
+      });
+
       //pass data into the eventInformation view specifying which event's information to show
       $scope.clickedEvent = function(e) {
       	var message = {

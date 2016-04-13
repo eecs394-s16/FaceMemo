@@ -10,7 +10,11 @@ angular
       supersonic.ui.views.current.whenVisible(function() {
         var clicked_event = window.localStorage.getItem("clicked_event");
         $scope.event = JSON.parse(clicked_event);
+        var date = new Date($scope.event.date);
+        $scope.event.date = date;
       });
+
+
 
       //when users gets fetched from firebase, this function runs
       $scope.users.$loaded().then(function(list_of_users) {
