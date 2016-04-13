@@ -13,24 +13,20 @@
       <span>{{clickedEvent.date}}</span>
     </div>
 
-
-    <!-- Search box -->
-    <div class="row">
-      <div class="col">
-        <span>Search:</span>
-      </div>
-      <div class="col-80">
-         <input ng-model="query">
-      </div>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon super-search placeholder-icon"></i>
+        <input type="text" ng-model="query" placeholder="Search">
+      </label>
     </div>
 
     <!-- filters -->
     <div class="row">
-      <div class="col">
+      <!-- <div class="col">
         <span>Filters:</span>
-      </div>
+      </div> -->
 
-      <div class="col-80">
+      <div class="col-6 role">
         <ul class="list">
           <li class="item item-checkbox inline" ng-repeat="role in roles">
             <label class="checkbox">
@@ -43,7 +39,7 @@
     </div>
 
  
-
+  <div class="row">
     <ul class="list two-col-special" ng-hide="attendeess.length == 0">
         <super-navigate location="tabs#show" ng-repeat="attendee in attendees | filter: query | filter: roleFilter">
           <!-- <li class="item item-icon-right"> -->
