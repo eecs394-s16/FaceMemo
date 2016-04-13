@@ -7,35 +7,45 @@
 
   <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
   <div ng-hide="showSpinner">
+
+    <div class="titleCenter">
+      <span><h4>{{clickedEvent.name}}</h4></span>
+      <span>{{clickedEvent.date}}</span>
+    </div>
+
+
     <!-- Search box -->
     <div class="row">
       <div class="col">
-        Search: <input ng-model="query">
+        <span>Search:</span>
+      </div>
+      <div class="col-80">
+         <input ng-model="query">
       </div>
     </div>
-    <!-- orders and filters -->
+
+    <!-- filters -->
     <div class="row">
-      <div class="col col-50">
-        Sort
-        <select ng-model="orderAttendee">
-            <option value="name">By Name</option>
-            <option value="company">By Company</option>
-            <option value="title">By Title</option>
-        </select>
+      <div class="col">
+        <span>Filters:</span>
       </div>
 
-      <div class="col col-50">
-        Show
-        <select ng-model="showRole">
-            <option value="all">All</option>
-            <option value="recruiter">Recrutiers</option>
-            <option value="student">Students</option>
-        </select>
-      </div>
+      <div class="col-80">
+        <ul class="list">
+          <li class="item item-checkbox inline" ng-repeat="role in roles">
+            <label class="checkbox">
+              <input type="checkbox" ng-model="role.selected">
+            </label>
+            {{role.roleLabel}}
+          </li>
+        </ul>
+      </div> 
     </div>
+
+ 
 
     <ul class="list two-col-special" ng-hide="attendeess.length == 0">
-        <super-navigate location="tabs#show" ng-repeat="attendee in attendees | filter: query | filter: roleFilter | orderBy: orderAttendee">
+        <super-navigate location="tabs#show" ng-repeat="attendee in attendees | filter: query | filter: roleFilter">
           <!-- <li class="item item-icon-right"> -->
           <li ng-click="clickedAttendee(attendee)">
             <img class="profilepic" ng-src="{{attendee.image}}"></img>

@@ -72,6 +72,13 @@
 	margin: 5% 18% 5% 18%;
 }
 
+.titleCenter {
+	text-align: center;
+	display: inline-block;
+	width: 100%;
+	margin: 0;
+}
+
 
 
 .like_p {
@@ -79,3 +86,6 @@
 	font-weight: bold;
 	text-decoration: none;
 }
+
+
+
