@@ -18,8 +18,12 @@
         <h5>Company: <span ng-bind="attendee.company"></span></h5> 
         <h5>Title: <span ng-bind="attendee.title"></span></h5>
         <h5>Phone: <span ng-bind="attendee.phone"></span></h5>  
-        <a class="button button-small button-positive" href="{{attendee.LinkedinURL}}">View Linkedin profile</a>
-        <a class="button button-small button-positive" href="mailto:{{attendee.email}}">Draft Email</a>
+        <a class="button button-positive" href="{{attendee.LinkedinURL}}">
+          <i class="icon fa fa-linkedin"></i>
+        </a>
+        <a class="button button-positive" href="mailto:{{attendee.email}}">
+          <i class="icon super-email"></i>
+        </a>
       </div>
       
 
