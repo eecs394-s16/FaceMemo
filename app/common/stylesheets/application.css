@@ -1,5 +1,5 @@
-.supersonic-navbar-mock {
-  background-color: #00B5FF !important;
+.navigation-bar {
+  background-color: #00635D;
   text-align: center;
   font-weight: 600;
 }
@@ -70,6 +70,14 @@
 	text-align: center;
 	display: inline-block;
 	margin: 5% 18% 5% 18%;
+}
+
+.attendeeinfo {
+	font-size: 120%;
+}
+
+.attendeebutton {
+	border-radius: 10px;
 }
 
 .titleCenter {
