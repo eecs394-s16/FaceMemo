@@ -76,6 +76,10 @@
 	font-size: 120%;
 }
 
+.attendeebutton {
+	border-radius: 10px;
+}
+
 .titleCenter {
 	text-align: center;
 	display: inline-block;
