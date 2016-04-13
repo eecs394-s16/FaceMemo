@@ -10,13 +10,27 @@
     <super-navigate location="tabs#attendees">
       <div class="item item-body">
         <img class="full-image" src="{{event.image}}">
+
         <div class="row row-top">
-          <div class="col col-25">{{event.date}}</div>
-          <div class="col">
-            <h2>{{event.name}}</h2>
+
+          <div class="col col-25 date">
+                <h2>{{event.date | date: 'd'}}</h2> 
+                <h3>{{event.date | date: 'MMM'}}</h3>
           </div>
+
+          <div class="col col-center">
+
+                <h2>{{event.name}}</h2>
+
+          </div>
+    
+          
         </div>
       </div>
     </super-navigate>
   </div>
 </div>
+
+
+
+
