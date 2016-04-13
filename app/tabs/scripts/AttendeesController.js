@@ -18,20 +18,36 @@ angular
           rec.role = rec.defaultRole;
     			$scope.attendees.push(rec);
     		}
-  	  })
+  	  });
 
-      $scope.orderAttendee = 'name';
 
-      $scope.showRole = 'all';
+      // Setup roleFilter
+      $scope.roles = [{
+        roleLabel: 'Recruiters',
+        roleName: 'recruiter',
+        selected: true
+      },{
+        roleLabel: 'Students',
+        roleName: 'student',
+        selected: true
+      }];
+
       //custom filter function for roles
       $scope.roleFilter = function (user) {
-        if ($scope.showRole === 'all') return true;
-        else return ($scope.showRole === user.role);
-      }
+        for(var i = 0; i < $scope.roles.length; i++) {
+          if($scope.roles[i].selected  && $scope.roles[i].roleName === user.role)
+            return true;
+        }
+        return false;
+
+      };
 
       //keeps track of which attendee the user clicks
       $scope.clickedAttendee = function(attendee) {
         window.localStorage.setItem("clicked_attendee", JSON.stringify(attendee));
         $scope.test = attendee;
-      }
+      };
+
+
+
   }]);
