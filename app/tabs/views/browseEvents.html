@@ -7,13 +7,11 @@
   </super-navbar>
 
   <!-- Search box -->
-  <div class="row">
-    <div class="col">
-      <span>Search:</span>
-    </div>
-    <div class="col-80">
-       <input ng-model="query">
-    </div>
+  <div class="list list-inset">
+    <label class="item item-input">
+      <i class="icon super-search placeholder-icon"></i>
+      <input type="text" ng-model="query" placeholder="Search">
+    </label>
   </div>  
 
   <div class="list card" ng-repeat="event in events | filter: query" ng-click="clickedEvent(event)">
