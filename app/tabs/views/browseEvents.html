@@ -2,11 +2,19 @@
 
   <super-navbar>
     <super-navbar-title>
-      Browse Events
+      Find Events
     </super-navbar-title>
   </super-navbar>
 
-  <div class="list card" ng-repeat="event in events" ng-click="clickedEvent(event)">
+  <!-- Search box -->
+  <div class="list list-inset">
+    <label class="item item-input">
+      <i class="icon super-search placeholder-icon"></i>
+      <input type="text" ng-model="query" placeholder="Search">
+    </label>
+  </div>  
+
+  <div class="list card" ng-repeat="event in events | filter: query" ng-click="clickedEvent(event)">
     <super-navigate location="tabs#eventinformation">
       <div class="item item-body">
         <img class="full-image" src="{{event.image}}">
