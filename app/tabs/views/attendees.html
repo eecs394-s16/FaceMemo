@@ -10,7 +10,7 @@
 
     <div class="titleCenter">
       <span><h4>{{clickedEvent.name}}</h4></span>
-      <span>{{clickedEvent.date}}</span>
+      <span>{{clickedEvent.date | date: 'MMM d, yyyy'}}</span>
     </div>
 
     <div class="list list-inset">
@@ -22,26 +22,6 @@
 
     <!-- filters -->
     <div class="row">
-<<<<<<< HEAD
-      <div class="col-30">
-        <select>
-            <option selected>By Name</option>
-            <option>By Company</option>
-            <option>By Title</option>
-        </select>
-      </div> 
-
-
-      <div class="col">
-        <i class="icon super-ios-search placeholder-icon"></i>
-         <input ng-model="query" placeholder="Search">
-      </div> 
-
-
-=======
-      <!-- <div class="col">
-        <span>Filters:</span>
-      </div> -->
 
       <div class="col-6 role">
         <ul class="list">
@@ -53,7 +33,6 @@
           </li>
         </ul>
       </div> 
->>>>>>> origin/master
     </div>
 
  
