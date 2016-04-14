@@ -41,6 +41,11 @@
 	margin: 5% 18% 5% 18%;
 }
 
+.check {
+	color: #1ABC9C;
+	background-color: #1ABC9C;
+}
+
 .profilepic {
 	border-radius: 25%;
 /*	width: 150px;
