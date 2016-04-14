@@ -40,6 +40,7 @@ navigation-bar back-button {
 tab-bar {
   background-color: #ffffff;
   border-top: 1px #d8d8d8 solid;
+  color: #00635D;
 }
 
 tab-bar tab-bar-item {
@@ -49,7 +50,7 @@ tab-bar tab-bar-item {
 }
 
 tab-bar tab-bar-item:selected {
-  color: #1596f7;
+  color: #00635D;
 }
 
 tab-bar divider {
