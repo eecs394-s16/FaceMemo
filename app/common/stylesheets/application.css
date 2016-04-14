@@ -107,3 +107,36 @@
 }
 
 
+/* Responsive circle for date */
+
+.responsive-circle {
+    font-size: 1em;
+    font-weight: 700;
+    margin: 0 auto 0;
+    width: 100%;
+}
+.responsive-circle::after {
+    border-radius: 50%;
+    content: "";
+    display: block;
+    height: 0;
+    margin-bottom: 0;
+    padding-bottom: 100%;
+    width: 100%;
+    border: 3px solid #cfdcec;
+    background-color: #1ABC9C;
+}
+.responsive-circle div {
+    color: white;
+    float: left;
+    line-height: 1em;
+    margin-top: 0;
+    padding-top: 15%;
+    text-align: center;
+    width: 100%;
+}
+.responsive-circle .day {
+	font-size: 1.5em;
+}
+
+

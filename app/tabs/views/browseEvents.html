@@ -18,16 +18,20 @@
     <super-navigate location="tabs#eventinformation">
       <div class="item item-body">
         <img class="full-image" src="{{event.image}}">
-        <div class="row">
-          <div class="col col-25 date">
-                <h2>{{event.date | date: 'd'}}</h2> 
-                <h3>{{event.date | date: 'MMM'}}</h3>
+        <div class="row row-center">
+
+          <div class="col col-25">
+            <div class="responsive-circle">
+                <div class="day">{{event.date | date: 'd'}}</div>
+                <div class="month">{{event.date | date: 'MMM'}}</div>
+            </div>                
           </div>
 
-          <div class="col col-center">
+          <div class="col">
               <h2>{{event.name}}</h2>
+              <h3>{{event.location}}</h3>
           </div>   
-
+          
         </div>
       </div>
     </super-navigate>
