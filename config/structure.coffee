@@ -7,7 +7,7 @@ module.exports =
     {
       title: "My Events"
       id: "index"
-      location: "tabs#myEvents" 
+      location: "tabs#login" 
     }
     {
       title: "Find Events"
