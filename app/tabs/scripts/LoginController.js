@@ -3,9 +3,10 @@ angular
 	.controller("LoginController", ["$scope", "$cordovaOauth", "$q", "$http", function($scope, $cordovaOauth, $q, $http) {
 		var clientId = '77ouzqqmag9qjl';
 		var clientSecret = 'rShLnylQZT6aDY3F';
-		var redirect_uri = "https://www.google.com/callback";
+		var redirect_uri = "https://www.google.com";
 		// var appScope = ['r_fullprofile', 'r_emailaddress', 'w_share'];
-		var appScope = ['r_basicprofile'];
+		// var appScope = ['r_basicprofile'];
+		var appScope = 'r_basicprofile';
 		var state = 'DCEeFWf45A53sdfKef424';
 		var requestResult = '';
 		var requestToken = 'initial token';
@@ -57,28 +58,83 @@ angular
 		
 		$scope.linkedinLogin = function() {
 			var deferred = $q.defer();
-			var browserRef = window.open('https://www.linkedin.com/uas/oauth2/authorization?client_id=' + clientId + '&redirect_uri=' + redirect_uri + '&scope=' + appScope.join(" ") + '&response_type=code&state=' + state, '_blank', 'location=yes,clearsessioncache=yes,clearcache=yes');
-			// var browserRef = window.open('https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=77ouzqqmag9qjl&redirect_uri=http://www.google.com/callback&state=DCEeFWf45A53sdfKef424&scope=r_basicprofile','_blank','location=yes');
+			var browserRef = window.open('https://www.linkedin.com/uas/oauth2/authorization?client_id=' + clientId + '&redirect_uri=' + redirect_uri + '&scope=' + appScope + '&response_type=code&state=' + state, '_blank', 'location=yes,clearsessioncache=yes,clearcache=yes');
+			//var browserRef = window.open('https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=77ouzqqmag9qjl&redirect_uri=http://www.google.com&state=DCEeFWf45A53sdfKef424&scope=r_basicprofile');
+			//https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=123456789&redirect_uri=https%3A%2F%2Fwww.example.com%2Fauth%2Flinkedin&state=987654321&scope=r_basicprofile
 
 			browserRef.addEventListener('loadstart', function(event) {
 	            if((event.url).indexOf(redirect_uri) === 0) {
 	              try {
 	                requestToken = (event.url).split("code=")[1].split("&")[0];
-	                alert(requestToken);
-	                $http({method: "POST", headers: {'Content-Type': 'application/x-www-form-urlencoded'}, url: "https://www.linkedin.com/uas/oauth2/accessToken", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=" + redirect_uri + "&grant_type=authorization_code" + "&code=" + requestToken })
-	                // $http({method: "POST", headers: {'Content-Type': 'application/x-www-form-urlencoded'}, url: "https://www.linkedin.com/uas/oauth2/accessToken", data: "client_id=77ouzqqmag9qjl&client_secret=rShLnylQZT6aDY3F&redirect_uri=https%3A%2F%2Fwww.google.com%2Fcallback&grant_type=authorization_code&code=" + requestToken })
+     //        		var data = $.param({
+					// 	grant_type: 'authorization_code',
+					// 	code: requestToken,
+					// 	redirect_uri: redirect_uri,
+					// 	client_id: client_id,
+					// 	client_secret: client_secret
+					// 	});
+     //    			var config = {
+     //            		headers : {
+     //            			'Host': 'www.linkedin.com',
+     //                		'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+     //            		}
+     //        		}
+					// $http.post('/uas/oauth2/accessToken', data, config)
+    //         		.success(function (data, status, headers, config) {
+    //             		$scope.PostDataResponse = data;
+    //         		})
+    //         		.error(function (data, status, header, config) {
+    //             		$scope.ResponseDetails = "Data: " + data +
+    //                 "<hr />status: " + status +
+    //                 "<hr />headers: " + header +
+    //                 "<hr />config: " + config;
+    //         		});
+    //     		};
+
+    // });
+					var req = {
+						method: 'POST',
+						url: 'http%3A%2F%2Fwww.linkedin.com/uas/oauth2/accessToken?client_id=77ouzqqmag9qjl&client_secret=rShLnylQZT6aDY3F&redirect_uri=https%3A%2F%2Fwww.google.com%2F&grant_type=authorization_code&code=' + requestToken,
+						headers: {
+						//	'Host': 'www.linkedin.com',
+							'Content-Type': 'application/x-www-form-urlencoded'
+						}
+					}
+					// 	data: "client_id=77ouzqqmag9qjl&client_secret=rShLnylQZT6aDY3F&redirect_uri=https%3A%2F%2Fwww.google.com%2F&grant_type=authorization_code&code=" + requestToken 
+					// 	//data: "client_id=77ouzqqmag9qjl&client_secret=rShLnylQZT6aDY3F&redirect_uri=https%3A%2F%2Fwww.google.com&grant_type=authorization_code&code=" + requestToken 
+					// 	data: {
+					// 	grant_type: 'authorization_code',
+					// 	code: requestToken,
+					// 	redirect_uri: redirect_uri,
+					// 	client_id: client_id,
+					// 	client_secret: client_secret
+					// 	}
+					// 	data: [
+					// 		{'grant_type': 'authorization_code'},
+					// 		{'code': requestToken},
+					// 		{'redirect_uri': redirect_uri},
+					// 		{'client_id': client_id},
+					// 		{'client_secret': client_secret}
+					// 	]
+					// };
+	                $http(req)
+	                //$http({method: "POST", headers: {'Content-Type': 'application/x-www-form-urlencoded'}, url: "https://www.linkedin.com/uas/oauth2/accessToken", data: "client_id=77ouzqqmag9qjl&client_secret=rShLnylQZT6aDY3F&redirect_uri=https%3A%2F%2Fwww.google.com%2Fcallback&grant_type=authorization_code&code=" + requestToken })
 	                  .success(function(data) {
+	                  	alert("works");
 	                    deferred.resolve(data);
 	                  })
 	                  .error(function(data, status) {
+	                  	alert("failure");
 	                    deferred.reject(status);
 	                  })
 	                  .finally(function() {
+	                  	alert("finally");
 	                    setTimeout(function() {
 	                        browserRef.close();
 	                    }, 10);
 	                  });
-	              } catch(e){	              	
+	              } catch(e){	 
+	              		alert("catch");             	
 		                setTimeout(function() {
 		                    browserRef.close();
 		                }, 10);
