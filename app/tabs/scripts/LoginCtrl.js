@@ -3,6 +3,7 @@ angular
   // .controller('LoginCtrl', function(store, $scope, $location, auth) {
   .controller('LoginCtrl', function($scope, $location) {
     $scope.test = "Yang";
+    //
     $scope.login = function() {
       $scope.test = "Yang logging in";
       auth.signin({
