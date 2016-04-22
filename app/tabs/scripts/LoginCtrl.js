@@ -11,18 +11,33 @@ angular
       }, function(profile, token, accessToken, state, refreshToken) {
         // Success callback
         //console.log("success!" + JSON.stringify(profile));
-        var ref = new Firebase("https://scorching-fire-12.firebaseio.com");
-        var userRef = ref.child("users");
         store.set('profile', profile);
         store.set('token', token);
         store.set('refreshToken', refreshToken);
-        userRef.child(profile.user_id).set({
-          name: profile.name,
-          LinkedinURL: profile.publicProfileUrl,
-          image: profile.picture,
-          email: profile.email,
-          title: profile.headline
-        });
+        store.set('user_id', profile.user_id);
+
+        //Adding user to firebase if it doesn't exist already
+        var ref = new Firebase("https://scorching-fire-12.firebaseio.com/users");
+        ref.once("value", function(snapshot) {
+          if (snapshot.child(profile.user_id).exists()) {
+            ref.child(profile.user_id).update({
+              name: profile.name,
+              LinkedinURL: profile.publicProfileUrl,
+              image: profile.picture,
+              email: profile.email,
+              title: profile.headline
+            })
+          }
+          else {
+            ref.child(profile.user_id).set({
+              name: profile.name,
+              LinkedinURL: profile.publicProfileUrl,
+              image: profile.picture,
+              email: profile.email,
+              title: profile.headline
+            });
+          }
+        }) 
         $location.path('/');
         var view = new supersonic.ui.View("tabs#myEvents");
         supersonic.ui.layers.push(view);
