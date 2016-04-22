@@ -1,8 +1,9 @@
 angular
   .module('tabs')
   // .controller('LoginCtrl', function(store, $scope, $location, auth) {
-  .controller('LoginCtrl', function(supersonic, $scope, $location, store, auth) {
+  .controller('LoginCtrl', function(supersonic, $scope, $location, store, auth, Users) {
     $scope.test = "Yang";
+    // $scope.users = Users.all();
     
     $scope.login = function() {
       $scope.test = "Yang logging in";
@@ -17,6 +18,16 @@ angular
         store.set('profile', profile);
         store.set('token', token);
         store.set('refreshToken', refreshToken);
+        auth.getToken({
+          api: 'firebase'
+        }).then(function(delegation) {
+          alert(JSON.stringify(delegation));
+          store.set('firebaseToken', delegation.id_token);
+          // $state.go('tab.friends');
+        }, function(error) {
+          console.log("There was an error logging in", error);
+        });
+
         $location.path('/');
         var view = new supersonic.ui.View("tabs#myEvents");
         supersonic.ui.layers.push(view);
