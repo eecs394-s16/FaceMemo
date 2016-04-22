@@ -1,7 +1,7 @@
 angular
   .module('tabs')
   // .controller('LoginCtrl', function(store, $scope, $location, auth) {
-  .controller('LoginCtrl', function($scope, $location, store, auth) {
+  .controller('LoginCtrl', function(supersonic, $scope, $location, store, auth) {
     $scope.test = "Yang";
     
     $scope.login = function() {
@@ -18,6 +18,9 @@ angular
         store.set('token', token);
         store.set('refreshToken', refreshToken);
         $location.path('/');
+        var view = new supersonic.ui.View("tabs#myEvents");
+        supersonic.ui.layers.push(view);
+
       }, function() {
         // Error callback
         alert("error");
