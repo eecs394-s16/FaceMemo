@@ -1,6 +1,6 @@
 angular
 	.module('tabs')
-	.controller("LoginController", ["$scope", "$cordovaOauth", "$q", "$http", function($scope, $cordovaOauth, $q, $http) {
+	.controller("LoginController", ["$scope", "$q", "$http", function($scope, $q, $http) {
 		var clientId = '77ouzqqmag9qjl';
 		var clientSecret = 'rShLnylQZT6aDY3F';
 		var redirect_uri = "https://www.google.com";
@@ -117,14 +117,18 @@ angular
 					// 		{'client_secret': client_secret}
 					// 	]
 					// };
-	                $http(req)
+					// jQuery.post('http://www.google.com', function(data) {
+					// 	alert("jQuery post data:" + data)
+					// });
+					$http.post('http://www.linkedin.com/uas/oauth2/accessToken?client_id=77ouzqqmag9qjl&client_secret=rShLnylQZT6aDY3F&redirect_uri=https%3A%2F%2Fwww.google.com%2F&grant_type=authorization_code&code=' + requestToken, '', req.headers)
+	                // $http(req)
 	                //$http({method: "POST", headers: {'Content-Type': 'application/x-www-form-urlencoded'}, url: "https://www.linkedin.com/uas/oauth2/accessToken", data: "client_id=77ouzqqmag9qjl&client_secret=rShLnylQZT6aDY3F&redirect_uri=https%3A%2F%2Fwww.google.com%2Fcallback&grant_type=authorization_code&code=" + requestToken })
 	                  .success(function(data) {
-	                  	alert("works");
+	                  	alert("works! data = " + data);
 	                    deferred.resolve(data);
 	                  })
 	                  .error(function(data, status) {
-	                  	alert("failure");
+	                  	alert("failure! data=" + data+"status:"+status);
 	                    deferred.reject(status);
 	                  })
 	                  .finally(function() {
@@ -134,18 +138,18 @@ angular
 	                    }, 10);
 	                  });
 	              } catch(e){	 
-	              		alert("catch");             	
+	              		console.log("catch");             	
 		                setTimeout(function() {
 		                    browserRef.close();
 		                }, 10);
 		          }
 	            }
-	            var oauthResult = deferred.promise;
-	           	oauthResult.then(function(result) {
-	           		alert(result.access_token);
-	           	}, function(error) {
-	           		alert(error);
-	           	});
+	            // var oauthResult = deferred.promise;
+	           	// oauthResult.then(function(result) {
+	           	// 	alert(result.access_token);
+	           	// }, function(error) {
+	           	// 	alert(error);
+	           	// });
 
 
 
