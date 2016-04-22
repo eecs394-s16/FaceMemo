@@ -14,6 +14,11 @@ module.exports =
       id: "browse"
       location: "tabs#browseEvents"
     }
+    {
+      title: "Settings"
+      id: "settings"
+      location: "tabs#settings"
+    }
   ]
 
 
