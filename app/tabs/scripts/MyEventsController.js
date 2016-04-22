@@ -27,4 +27,5 @@ angular
         store.remove('token');
         supersonic.ui.layers.pop();
       };
+      console.log("testtest");
   });
