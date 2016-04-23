@@ -1,9 +1,10 @@
 angular
   .module('tabs')
   // .controller('LoginCtrl', function(store, $scope, $location, auth) {
-  .controller('LoginCtrl', function(supersonic, $scope, $location, store, auth, Users) {
+  .controller('LoginCtrl', function(supersonic, $scope, $location, store, auth, Users, Events) {
     $scope.test = "Yang";
-    // $scope.users = Users.all();
+    $scope.users = Users.all();
+    $scope.events = Events.all();
     
     $scope.login = function() {
       $scope.test = "Yang logging in";
