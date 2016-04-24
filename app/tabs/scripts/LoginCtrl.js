@@ -1,7 +1,10 @@
 angular
   .module('tabs')
   // .controller('LoginCtrl', function(store, $scope, $location, auth) {
-  .controller('LoginCtrl', function(supersonic, $scope, $location, store, auth) {    
+  .controller('LoginCtrl', function(supersonic, $firebase, $scope, $location, store, auth) {
+    // $scope.users = Users.all();
+    // $scope.events = Events.all();
+
     $scope.login = function() {
       auth.signin({
         authParams: {
@@ -38,6 +41,29 @@ angular
             });
           }
         }) 
+        auth.getToken({
+          api: 'firebase'
+        }).then(function(delegation) {
+          console.log(delegation.id_token);
+          store.set('firebaseToken', delegation.id_token);
+
+          //authentificate with firebase
+          var Ref = new Firebase("https://scorching-fire-12.firebaseio.com");
+          Ref.authWithCustomToken(store.get('firebaseToken'), function(error, authdata) {
+            if (error) {
+              // There was an error logging in, redirect the user to login page
+              // $state.go('login');
+            }
+            console.log("auth with firebase done!" + JSON.stringify(authdata));
+            console.log("user id is" + authdata.auth.fb_id);
+            store.set('uid', authdata.auth.fb_id);
+          });
+
+
+          // $state.go('tab.friends');
+        }, function(error) {
+          console.log("There was an error logging in", error);
+        });
         $location.path('/');
         var view = new supersonic.ui.View("tabs#myEvents");
         supersonic.ui.layers.push(view);
@@ -48,78 +74,3 @@ angular
       });
     };
 });
-
-// angular
-//   .module('tabs')
-//   // .controller('LoginCtrl', function(store, $scope, $location, auth) {
-//   .controller('LoginCtrl', function(supersonic, $scope, $location, store, auth) {
-//     $scope.login = function() {
-//       auth.signin({
-//         authParams: {
-//           scope: 'openid offline_access',
-//           device: 'Mobile device'
-//         }
-//       }, function(profile, token, accessToken, state, refreshToken) {
-//         // Success callback
-//         //console.log("success!" + JSON.stringify(profile));
-//         var ref = new Firebase("https://scorching-fire-12.firebaseio.com/users");
-//         $scope.users = $firebaseArray(ref);
-//         store.set('profile', profile);
-//         store.set('token', token);
-//         store.set('refreshToken', refreshToken);
-//         $location.path('/');
-//         ref.once("value", function(snapshot) {
-//           var a = snapshot.child("email").exists();
-//           if a == true {
-//             alert("true");
-//           }
-//         }
-//         var view = new supersonic.ui.View("tabs#myEvents");
-//         supersonic.ui.layers.push(view);
-
-//       }, function() {
-//         // Error callback
-//         alert("error");
-//       });
-//     };
-// });
-//     }
-//   }
-
-// angular
-//   .module('tabs')
-//   .controller('SettingsController', function($scope, supersonic) {
-//     var ref = new Firebase("https://scorching-fire-12.firebaseio.com");
-//     $scope.submit = function() {
-//       $scope.test = $scope.role
-//       ref.createUser({
-//         email: $scope.email,
-//         password: $scope.password
-//       }, function(error, userData) {
-//         if (error) {
-//         switch (error.code) {
-//             case "EMAIL_TAKEN":
-//               alert("The new user account cannot be created because the email is already in use.");
-//               break;
-//             case "INVALID_EMAIL":
-//               alert("The specified email is not a valid email.");
-//               break;
-//             default:
-//               alert(error);
-//           }
-//       } else {
-//         var usersRef = ref.child("users");
-//         usersRef.push().set({
-//             email: $scope.email,
-//             name: $scope.name,
-//             company: $scope.company,
-//             position: $scope.position,
-//             linkedinurl: $scope.linkedin, 
-//             role: $scope.role,
-//             id: userData.uid
-//         });
-//         alert("Your account was successfully created")
-//       }
-//     });
-//     }
-// });
