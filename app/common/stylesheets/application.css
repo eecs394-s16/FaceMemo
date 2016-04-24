@@ -144,4 +144,14 @@
 	font-size: 1.5em;
 }
 
+/* MyEvents Radio Button */
+.item-radio {
+	width: 49%;
+	margin: 0;
+	display: inline-block;
+}
+
+.item-radio:checked {
+}
+
 

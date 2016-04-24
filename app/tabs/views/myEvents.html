@@ -1,38 +1,49 @@
 <div class="padding" ng-controller="MyEventsController">
 
-  <super-navbar>
-    <super-navbar-title>
-      My Events
-    </super-navbar-title>
-  </super-navbar>
+	<super-navbar>
+		<super-navbar-title>
+			My Events
+		</super-navbar-title>
+	</super-navbar>
 
+	<label class="item item-radio">
+		<input type="radio" name="group" value="attended" checked="checked">
+		<div class="item-content">
+			Attended
+		</div>
+	</label>
+	<label class="item item-radio">
+		<input type="radio" name="group" value="created">
+		<div class="item-content">
+			Created
+		</div>
+	</label>
 
+	<div class="list card" ng-repeat="event in events" ng-click="clickedEvent(event)">
+		<super-navigate location="tabs#attendees">
+			<div class="item item-body">
+				<img class="full-image" src="{{event.image}}">
 
-  <div class="list card" ng-repeat="event in events" ng-click="clickedEvent(event)">
-    <super-navigate location="tabs#attendees">
-      <div class="item item-body">
-        <img class="full-image" src="{{event.image}}">
+				<div class="row row-center">
 
-        <div class="row row-center">
+					<div class="col col-25">
+						<div class="responsive-circle">
+								<div class="day">{{event.date | date: 'd'}}</div>
+								<div class="month">{{event.date | date: 'MMM'}}</div>
+						</div>                
+					</div>
 
-          <div class="col col-25">
-            <div class="responsive-circle">
-                <div class="day">{{event.date | date: 'd'}}</div>
-                <div class="month">{{event.date | date: 'MMM'}}</div>
-            </div>                
-          </div>
+					<div class="col">
+							<h2>{{event.name}}</h2>
+							<h3>{{event.location}}</h3>
+					</div>   
+					
+				</div>
+			</div>
+		</super-navigate>
+	</div>
 
-          <div class="col">
-              <h2>{{event.name}}</h2>
-              <h3>{{event.location}}</h3>
-          </div>   
-          
-        </div>
-      </div>
-    </super-navigate>
-  </div>
-
-  <input type="submit" ng-click="logout()" value="Log out"/>
+	<input type="submit" ng-click="logout()" value="Log out"/>
 </div>
 
 
