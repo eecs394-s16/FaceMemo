@@ -3,9 +3,9 @@ angular.module('tabs')
 /**
  * A simple example service that returns some data.
  */
-.service('Users', function($firebaseArray, store, Events) {
-  // var uid = '';
-  // var myEvents = [];
+.service('Users', function($firebaseArray, store) {
+  var uid = '';
+  var myEvents = [];
   var usersRef = new Firebase("https://scorching-fire-12.firebaseio.com/users");
   // usersRef.authWithCustomToken(store.get('firebaseToken'), function(error, authdata) {
   //   if (error) {
@@ -20,7 +20,6 @@ angular.module('tabs')
   // var users = usersSync.$asArray();
 
   this.all = function() {
-    console.log("current users:" + users.length);
     return users;
   };
 
@@ -29,11 +28,7 @@ angular.module('tabs')
   };
 
   this.get = function(id) {
-    console.log("current users:"+JSON.stringify(users));
-
     return users.$getRecord(id);
-
-
   };
 
   this.save = function(user) {
@@ -43,18 +38,25 @@ angular.module('tabs')
   this.delete = function(user) {
     users.$remove(user);
   };
+  this.myEvents = function() {
+    uid = store.get('uid');
+    console.log("current users:" + users);
+    console.log("uid = " + uid);
+    console.log(users.uid);
+    return  users.$getRecord(uid).myEvents;
+  }
 
 })
 
-.service('Events', function($firebaseArray, store, $filter) {
+.service('Events', function($firebaseArray, store) {
 
   var eventsRef = new Firebase("https://scorching-fire-12.firebaseio.com/events");
-  // eventsRef.authWithCustomToken(store.get('firebaseToken'), function(error, auth) {
-  //   if (error) {
-  //     // There was an error logging in, redirect the user to login page
-  //     // $state.go('login');
-  //   }
-  // });
+  eventsRef.authWithCustomToken(store.get('firebaseToken'), function(error, auth) {
+    if (error) {
+      // There was an error logging in, redirect the user to login page
+      // $state.go('login');
+    }
+  });
   var events = $firebaseArray(eventsRef);
   // var eventsSync = $firebase(eventsRef);
   // var events = eventsSync.$asArray();
@@ -64,6 +66,7 @@ angular.module('tabs')
   };
 
   this.add = function(event) {
+
     events.$add(event);
   };
 
@@ -71,9 +74,23 @@ angular.module('tabs')
     return events.$getRecord(id);
   };
 
-
   this.save = function(event) {
-    events.$save(event);
+    console.log("saving event:" + angular.toJson(event));
+    // console.log("overwriting event:"
+    //   + angular.toJson(events.$getRecord(event['$id'])));
+    // console.log("current events:" + angular.toJson(events));
+    // events.$save(event).then(function() {
+    //   console.log("Succeeded! new events:" + angular.toJson(events));
+    // }, function(error) {
+    //   console.log(error);
+    //   // console.log("error! : " + angular.toJson(error));
+    // });
+    var eventId = event['$id'];
+    delete event['$id'];
+    delete event['$priority'];
+    eventsRef.child(eventId).set(event);
+    console.log("updated events:" + JSON.stringify(events));
+
   };
 
   this.delete = function(event) {

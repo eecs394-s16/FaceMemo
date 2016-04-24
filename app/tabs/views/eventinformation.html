@@ -8,37 +8,62 @@
   <img class="full-image" src="{{event.image}}">
   <!--<div class="row">
     <div class="col"> -->
-      <div class=" card">
+  <div class=" card">
     <div class="item item-text-wrap">
-      <div class="row">
-    <div class="col">
       <h2 class="padding">{{event.name}}</h2>
     </div>
-    <!--<button class="col col-20 col-center">Join</button> -->
-    <button class="button icon-right super-star ">Join</button>
-  </div>
-</div>
-</div>
 
-<div class="list list-inset">
-  <div class="item">
-    {{event.date | date: 'MMM d'}} at {{event.time}}
+      <!-- Join events -->
+    <div class="item">
+      <div class="row">
+        <!-- <button class="button button-full icon-left super-star"> -->
+        <button ng-click="join()" ng-class="{'button button-full icon-left super-star': joinStatus === 'Join', 'button button-full icon-left super-star button-positive': joinStatus === 'Joined'}">
+          {{joinStatus}} as:
+        </button>
+      </div>
+
+      <div class="row list">
+          <label class="item item-radio button">
+            <input type="radio" name="group" ng-model="joinRole" value="student">
+            <div class="item-content item-role">
+              Student
+            </div>
+          </label>
+
+          <label class="item item-radio button">
+            <input type="radio" name="group" ng-model="joinRole" value="recruiter">
+            <div class="item-content item-role">
+              Recruiter
+            </div>
+          </label>
+      </div>
+    </div>
+
   </div>
-  <div class="item">
-    {{event.location}}
-  </div>
+
+
+
+
+
+  <div class="list list-inset">
+    <div class="item">
+      {{event.date | date: 'MMM d'}} at {{event.time}}
+    </div>
+    <div class="item">
+      {{event.location}}
+    </div>
   </div>
 
   <div class="card">
     <div class="item item-text-wrap">
-  <p>{{event.description}}</p>
-</div>
+      <p>{{event.description}}</p>
+    </div>
 
-<div>
-  <super-navigate location="tabs#attendees">
-  <a class="button icon-right super-chevron-right button-clear button-dark" ng-click="clickedEvent()">Attendees</a>
-</super-navigate>
-</div>
+  <div>
+    <super-navigate location="tabs#attendees">
+    <a class="button icon-right super-chevron-right button-clear button-dark" ng-click="clickedEvent()">Attendees</a>
+    </super-navigate>
+  </div>
 <!-- <div class="padding">
   <h3 >
     Attendees
@@ -74,5 +99,6 @@
         Create a new attendees
       </button>
     </super-modal-show> -->
+    </div>
   </div>
 </div>
