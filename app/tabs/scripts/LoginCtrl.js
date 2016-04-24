@@ -1,11 +1,11 @@
 angular
   .module('tabs')
   // .controller('LoginCtrl', function(store, $scope, $location, auth) {
-  .controller('LoginCtrl', function(supersonic, $scope, $location, store, auth, Users, Events) {
+  .controller('LoginCtrl', function(supersonic, $firebase, $scope, $location, store, auth) {
     $scope.test = "Yang";
-    $scope.users = Users.all();
-    $scope.events = Events.all();
-    
+    // $scope.users = Users.all();
+    // $scope.events = Events.all();
+
     $scope.login = function() {
       $scope.test = "Yang logging in";
       auth.signin({
@@ -22,8 +22,22 @@ angular
         auth.getToken({
           api: 'firebase'
         }).then(function(delegation) {
-          alert(JSON.stringify(delegation));
+          console.log(delegation.id_token);
           store.set('firebaseToken', delegation.id_token);
+
+          //authentificate with firebase
+          var Ref = new Firebase("https://scorching-fire-12.firebaseio.com");
+          Ref.authWithCustomToken(store.get('firebaseToken'), function(error, authdata) {
+            if (error) {
+              // There was an error logging in, redirect the user to login page
+              // $state.go('login');
+            }
+            console.log("auth with firebase done!" + JSON.stringify(authdata));
+            console.log("user id is" + authdata.auth.fb_id);
+            store.set('uid', authdata.auth.fb_id);
+          });
+
+
           // $state.go('tab.friends');
         }, function(error) {
           console.log("There was an error logging in", error);
