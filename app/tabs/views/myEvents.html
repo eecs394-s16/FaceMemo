@@ -7,19 +7,19 @@
 	</super-navbar>
 
 	<label class="item item-radio">
-		<input type="radio" name="group" value="attended" checked="checked">
+		<input type="radio" name="group" value="attended" ng-model="eventFilter">
 		<div class="item-content">
 			Attended
 		</div>
 	</label>
 	<label class="item item-radio">
-		<input type="radio" name="group" value="created">
+		<input type="radio" name="group" value="created" ng-model="eventFilter">
 		<div class="item-content">
 			Created
 		</div>
 	</label>
 
-	<div class="list card" ng-repeat="event in events" ng-click="clickedEvent(event)">
+	<div class="list card" ng-repeat="event in myEvents | filter: ownerFilter" ng-click="clickedEvent(event)">
 		<super-navigate location="tabs#attendees">
 			<div class="item item-body">
 				<img class="full-image" src="{{event.image}}">
