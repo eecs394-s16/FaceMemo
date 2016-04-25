@@ -66,10 +66,40 @@ angular
 
           else {
             $scope.joinStatus = 'Join';
+            //update event attendee list
+            var currentEvent = Events.get($scope.event.$id);
+            var attendeeList = currentEvent.attendees;
+            currentEvent.attendees = attendeeList.filter(function(obj) {
+              return !(obj.id === uid);
+            });
+            Events.save(currentEvent);
+            //update user myEvents list
+            var currentUser = Users.get(uid);
+            var myEventsList = currentUser.myEvents;
+            currentUser.myEvents = myEventsList.filter(function(eventId) {
+              return !(eventId === $scope.event.$id);
+            });
+            Users.save(currentUser);
           }
         }
 
       };
+
+      // event handler when joinRole changes
+      $scope.$watch('joinRole', function(newRole, oldRole) {
+        var uid = store.get('uid');
+        console.log("role changed from" + oldRole + " to " + newRole);
+        if ($scope.joinStatus === 'Joined') {
+          var currentEvent = Events.get($scope.event.$id);
+          currentEvent.attendees.forEach(function(attendee) {
+            if (attendee.id === uid) {
+              attendee.role = newRole;
+              console.log("user " + uid + " 's role changed!");
+            }
+          });
+          Events.save(currentEvent);
+        }
+      });
 
 
 

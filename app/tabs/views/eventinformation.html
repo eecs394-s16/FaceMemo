@@ -24,14 +24,14 @@
 
       <div class="row list">
           <label class="item item-radio button">
-            <input type="radio" name="group" ng-model="joinRole" value="student">
+            <input type="radio" name="group" ng-model="joinRole" value="student" ng-change="roleChange()">
             <div class="item-content item-role">
               Student
             </div>
           </label>
 
           <label class="item item-radio button">
-            <input type="radio" name="group" ng-model="joinRole" value="recruiter">
+            <input type="radio" name="group" ng-model="joinRole" value="recruiter" ng-change="roleChange()">
             <div class="item-content item-role">
               Recruiter
             </div>
