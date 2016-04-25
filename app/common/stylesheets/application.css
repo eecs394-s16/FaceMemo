@@ -108,7 +108,7 @@
 
 .date {
 	text-align: center;
-	
+
 }
 
 
@@ -154,4 +154,17 @@
 .item-radio:checked {
 }
 
+
+.item-radio {
+    width: 49%;
+    margin: 0;
+    border: 1px;
+    display: inline-block;
+    padding: 0px;
+}
+
+.item-radio .item-content.item-role{
+	padding: 0px;
+	text-align:center;
+}
 

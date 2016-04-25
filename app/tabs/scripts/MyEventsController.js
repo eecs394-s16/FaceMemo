@@ -8,10 +8,18 @@ angular
       $scope.events = $firebaseArray(ref);
       $scope.myEvents = [];
 
-      $scope.events.$loaded().then(function(allEvents) {
+      $scope.events.$loaded().then(function() {
+        updateMyEvents();
+      });
+
+      ref.on("value", updateMyEvents);
+
+      // function to update myEvents for the current user
+      function updateMyEvents () {
+        $scope.myEvents=[];
         var uid = store.get('uid');
         // console.log(uid);
-        allEvents.forEach(function(event) {
+        $scope.events.forEach(function(event) {
           // console.log("event " + event.$id + "has attendees "
           //   + JSON.stringify(event.attendees));
           event.attendees.forEach(function(attendee) {
@@ -22,7 +30,7 @@ angular
             }
           });
         });
-      });
+      };
 
 
       //pass data into the eventInformation view specifying which event's information to show

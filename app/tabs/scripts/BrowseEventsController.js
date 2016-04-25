@@ -14,16 +14,17 @@ angular
 
       //pass data into the eventInformation view specifying which event's information to show
       $scope.clickedEvent = function(e) {
-      	var message = {
-      		attendees: e.attendees,
-      		date: e.date, 
-      		image: e.image,
-      		location: e.location,
-      		name: e.name,
-      		time: e.time,
-          description: e.description
-      	}
-        $scope.event = message;
-        window.localStorage.setItem("clicked_event", JSON.stringify(message));
+      	// var message = {
+      	// 	attendees: e.attendees,
+      	// 	date: e.date,
+      	// 	image: e.image,
+      	// 	location: e.location,
+      	// 	name: e.name,
+      	// 	time: e.time,
+       //    description: e.description
+      	// }
+        // $scope.event = message;
+        // window.localStorage.setItem("clicked_event", JSON.stringify(message));
+        window.localStorage.setItem("clicked_event", angular.toJson(e));
       }
   }]);
