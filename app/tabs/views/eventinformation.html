@@ -17,17 +17,18 @@
     <div class="item">
       <div class="row">
         <!-- <button class="button button-full icon-left super-star"> -->
-        <button ng-click="join()" ng-class="{'button button-full icon-left super-star': joinStatus === 'Join', 'button button-full icon-left super-star button-positive': joinStatus === 'Joined'}">
-          {{joinStatus}} as:
+        <button ng-click="join()" ng-class="{'button button-block': joinStatus === 'Join', 'button button-block button-balanced': joinStatus === 'Joined'}">
+          {{joinStatus}}
         </button>
       </div>
 
       <div class="row list">
-          <label class="item item-radio button">
+          <label class="item item-radio button button">
             <input type="radio" name="group" ng-model="joinRole" value="student" ng-change="roleChange()">
             <div class="item-content item-role">
               Student
             </div>
+            <i class="radio-icon super-checkmark"></i>
           </label>
 
           <label class="item item-radio button">
@@ -35,6 +36,7 @@
             <div class="item-content item-role">
               Recruiter
             </div>
+              <i class="radio-icon super-checkmark"></i>
           </label>
       </div>
     </div>
