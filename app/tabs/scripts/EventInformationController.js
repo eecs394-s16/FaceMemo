@@ -48,13 +48,22 @@ angular
         else {
           if ($scope.joinStatus === 'Join') {
             $scope.joinStatus = 'Joined';
-            $scope.event.attendees.push({
+            // update event attendee list
+            var currentEvent = Events.get($scope.event.$id);
+            // console.log("current event is: " + angular.toJson(currentEvent));
+            currentEvent.attendees.push({
               id: uid,
               role: $scope.joinRole
             });
-            console.log("current event:" + JSON.stringify($scope.event));
-            Events.save($scope.event);
+            // console.log("updated event is: " + angular.toJson(currentEvent));
+            Events.save(currentEvent);
+
+            //update user myEvents list
+            var currentUser = Users.get(uid);
+            currentUser.myEvents.push($scope.event.$id);
+            Users.save(currentUser);
           }
+
           else {
             $scope.joinStatus = 'Join';
           }

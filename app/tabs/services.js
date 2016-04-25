@@ -38,14 +38,6 @@ angular.module('tabs')
   this.delete = function(user) {
     users.$remove(user);
   };
-  this.myEvents = function() {
-    uid = store.get('uid');
-    console.log("current users:" + users);
-    console.log("uid = " + uid);
-    console.log(users.uid);
-    return  users.$getRecord(uid).myEvents;
-  }
-
 })
 
 .service('Events', function($firebaseArray, store) {
@@ -75,21 +67,24 @@ angular.module('tabs')
   };
 
   this.save = function(event) {
-    console.log("saving event:" + angular.toJson(event));
+    // console.log("saving event:" + angular.toJson(event));
     // console.log("overwriting event:"
     //   + angular.toJson(events.$getRecord(event['$id'])));
+
     // console.log("current events:" + angular.toJson(events));
-    // events.$save(event).then(function() {
-    //   console.log("Succeeded! new events:" + angular.toJson(events));
-    // }, function(error) {
-    //   console.log(error);
-    //   // console.log("error! : " + angular.toJson(error));
-    // });
-    var eventId = event['$id'];
-    delete event['$id'];
-    delete event['$priority'];
-    eventsRef.child(eventId).set(event);
-    console.log("updated events:" + JSON.stringify(events));
+    events.$save(event).then(function() {
+      // console.log("Succeeded! new events:" + angular.toJson(events));
+    }, function(error) {
+      // console.log(error);
+      console.log("error! : " + angular.toJson(error));
+    });
+    //
+    //
+    // var eventId = event['$id'];
+    // delete event['$id'];
+    // delete event['$priority'];
+    // eventsRef.child(eventId).set(event);
+    // console.log("updated events:" + JSON.stringify(events));
 
   };
 
