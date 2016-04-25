@@ -76,3 +76,7 @@ tab-bar-item#internet {
 tab-bar-item#browse {
   background-image: url(icons/eventsList.svg);
 }
+
+tab-bar-item#profile {
+   background-image: url(icons/profile.svg);
+}

@@ -1,1 +1,30 @@
-<p>My profile</p>
+<div ng-controller="ProfileController">
+  <super-navbar>
+    <super-navbar-title>
+      My Profile
+    </super-navbar-title>
+  </super-navbar>
+  <!-- <div>{{profile}}</div> -->
+
+
+  <div class="padding">
+    <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
+    <div ng-hide="showSpinner">
+
+      <div class="imagelarge">
+        <img class="profilepic" ng-src="{{attendee.image}}"></img>
+      </div>
+
+      <div class="center attendeeinfo">
+        <h2 ng-bind="attendee.name"></h2>
+        <p> <span ng-bind="attendee.title"></span></p> 
+        <a class="button button-positive attendeebutton" href="{{attendee.LinkedinURL}}">
+          <i class="icon fa fa-linkedin"></i>
+        </a>
+        <a class="button button-positive attendeebutton" href="mailto:{{attendee.email}}">
+          <i class="icon super-email"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
