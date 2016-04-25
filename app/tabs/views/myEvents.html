@@ -5,6 +5,9 @@
 			My Events
 		</super-navbar-title>
 	</super-navbar>
+  <div>
+    <h2> Welcome, {{user}} !<h2>
+  </div>
 
 	<label class="item item-radio">
 		<input type="radio" name="group" value="attended" ng-model="eventFilter">
@@ -30,14 +33,14 @@
 						<div class="responsive-circle">
 								<div class="day">{{event.date | date: 'd'}}</div>
 								<div class="month">{{event.date | date: 'MMM'}}</div>
-						</div>                
+						</div>
 					</div>
 
 					<div class="col">
 							<h2>{{event.name}}</h2>
 							<h3>{{event.location}}</h3>
-					</div>   
-					
+					</div>
+
 				</div>
 			</div>
 		</super-navigate>

@@ -22,3 +22,6 @@ module.exports =
   statusBar:
     enabled: true
     style: "default"
+
+  splashscreen:
+    autohide: true

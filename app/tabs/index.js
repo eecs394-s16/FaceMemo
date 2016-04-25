@@ -14,5 +14,21 @@ angular.module('tabs', [
 .run(function(auth) {
   // This hooks all auth events to check everything as soon as the app starts
   auth.hookEvents();
+})
+
+.factory("updateLocalStorage", function($window, store) {
+  return function() {
+    function messageReceived(event) {
+        for (key in event.data) {
+          var keyList = ['profile', 'token', 'uid', 'user_id', 'refreshToken'];
+          if (keyList.indexOf(key) > -1) {
+            console.log(key);
+            store.set(key, event.data[key]);
+            console.log(store.get(key));
+            }
+        }
+    }
+    $window.addEventListener("message", messageReceived);
+  }
 });
 

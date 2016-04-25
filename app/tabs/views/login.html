@@ -1,13 +1,19 @@
 <div ng-controller="LoginCtrl">
-  <div>
-    <img src="https://i.cloudup.com/StzWWrY34s.png" />
-    <h3>Facememo</h3>
-    <p>No more forgetting who he/she is...{{test}}</p>
-    <a href="" ng-click="login()" class="btn btn-primary btn-lg btn-block">SignIn</a>
+  <super-navbar>
+    <super-navbar-title>
+      Login
+    </super-navbar-title>
+  </super-navbar>
+
+  <div class="padding">
+    <div><img class="imagefull" src="/Facememo_logo.jpg"/><div>
+    <div>
+      <h3>No more forgetting who he/she is...</h3>
+      <br>
+      <br>
+      <br>
+      <a href="" ng-click="login()" class="button button-full button-calm">SignIn</a>
+    </div>
   </div>
 
-  <div>
-  	<p>Existing users: {{users}}</p>
-  	<p>Existing events: {{events}}</p>
-  </div>
 </div>
