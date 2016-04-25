@@ -1,11 +1,36 @@
 angular
   .module('tabs')
   // .controller('LoginCtrl', function(store, $scope, $location, auth) {
-  .controller('LoginCtrl', function(supersonic, $firebase, $scope, $location, store, auth) {
-    // $scope.users = Users.all();
-    // $scope.events = Events.all();
+  .controller('LoginCtrl', function(supersonic, $firebase, $scope, $location, store, auth, updateLocalStorage) {
+
+    // update localStorage when logged out
+    updateLocalStorage();
+
+    // if logged in, skip login page
+
+
+    function loadMyEvents() {
+      var newView = new supersonic.ui.View("tabs#myEvents");
+      supersonic.ui.layers.push(newView);
+    };
+
+    // if logged in, skip auth page
+            //update all localStorage items
+
+    if (store.get('profile')) {
+      loadMyEvents();
+    }
 
     $scope.login = function() {
+      //if logged in, skip auth page
+      //update all localStorage items
+
+      if (store.get('profile')) {
+        console.log(store.get('profile'));
+        loadMyEvents();
+        return;
+      }
+
       auth.signin({
         authParams: {
           scope: 'openid offline_access',
@@ -64,9 +89,19 @@ angular
         }, function(error) {
           console.log("There was an error logging in", error);
         });
+
+        //update all localStorage items
+        window.postMessage({
+          'profile': store.get('profile'),
+          'token': store.get('token'),
+          'uid': store.get('user_id'), // note 'uid' is posted in promise, delayed
+          'refreshToken': store.get('refreshToken'),
+          'user_id': store.get('user_id')
+        });
+
         $location.path('/');
-        var view = new supersonic.ui.View("tabs#myEvents");
-        supersonic.ui.layers.push(view);
+
+        loadMyEvents();
 
       }, function() {
         // Error callback

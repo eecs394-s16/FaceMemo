@@ -19,6 +19,11 @@
     vertical-align: top; /* In case multi-word categories form two lines */
 }
 
+.imagefull {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 
 .image {
 	width: 45%;

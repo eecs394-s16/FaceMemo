@@ -1,6 +1,15 @@
 angular
   .module('tabs')
-  .controller("MyEventsController", function ($scope, $firebaseArray, auth, store, supersonic, Users) {
+  .controller("MyEventsController", function ($scope, $firebaseArray, auth, store, supersonic, Users, updateLocalStorage) {
+    $scope.user = store.get('profile').name || 'guest';
+
+      // update localStorage when logged out
+    updateLocalStorage();
+
+    // load login page
+    function loadLogin() {
+      supersonic.ui.layers.pop();
+    };
 
 
       var ref = new Firebase("https://scorching-fire-12.firebaseio.com/events");
@@ -42,12 +51,18 @@ angular
 
       $scope.logout = function() {
         alert("signed out");
-        auth.signout();
+
+        //update all localStorage items
         store.remove('profile');
         store.remove('token');
-        console.log(store.get('uid'));
         store.remove('uid');
-        console.log(store.get('uid'));
-        supersonic.ui.layers.pop();
+        window.postMessage({
+          'profile': null,
+          'token': null,
+          'uid':null
+        });
+
+        auth.signout();
+        loadLogin();
       };
   });
