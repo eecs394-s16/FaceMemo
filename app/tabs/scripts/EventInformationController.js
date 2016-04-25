@@ -20,7 +20,8 @@ angular
 
       //when users gets fetched from firebase, this function runs
       $scope.users.$loaded().then(function(list_of_users) {
-        var uid = store.get('uid');  // id of current user
+        var uid = '';
+        uid = store.get('uid');  // id of current user
         console.log(uid);
 
         var list_of_attendees = $scope.event.attendees;

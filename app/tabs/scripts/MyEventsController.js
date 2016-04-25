@@ -45,6 +45,7 @@ angular
         auth.signout();
         store.remove('profile');
         store.remove('token');
+        store.remove('uid');
         supersonic.ui.layers.pop();
       };
   });

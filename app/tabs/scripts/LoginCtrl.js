@@ -40,7 +40,7 @@ angular
               title: profile.headline
             });
           }
-        }) 
+        })
         auth.getToken({
           api: 'firebase'
         }).then(function(delegation) {
