@@ -42,7 +42,8 @@ angular
 
       //join and unjoin
       $scope.join = function() {
-        var uid = store.get('uid');
+        var uid = '';
+        uid = store.get('uid');
         if (!uid) {
           alert("Please log in to join events!");
         }
@@ -88,18 +89,22 @@ angular
 
       // event handler when joinRole changes
       $scope.$watch('joinRole', function(newRole, oldRole) {
-        var uid = store.get('uid');
-        console.log("role changed from" + oldRole + " to " + newRole);
-        if ($scope.joinStatus === 'Joined') {
-          var currentEvent = Events.get($scope.event.$id);
-          currentEvent.attendees.forEach(function(attendee) {
-            if (attendee.id === uid) {
-              attendee.role = newRole;
-              console.log("user " + uid + " 's role changed!");
-            }
-          });
-          Events.save(currentEvent);
+        var uid = '';
+        uid = store.get('uid');
+        if (uid) {
+          console.log("role changed from" + oldRole + " to " + newRole);
+          if ($scope.joinStatus === 'Joined') {
+            var currentEvent = Events.get($scope.event.$id);
+            currentEvent.attendees.forEach(function(attendee) {
+              if (attendee.id === uid) {
+                attendee.role = newRole;
+                console.log("user " + uid + " 's role changed!");
+              }
+            });
+            Events.save(currentEvent);
+          }
         }
+
       });
 
 
