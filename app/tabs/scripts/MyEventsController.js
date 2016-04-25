@@ -11,7 +11,6 @@ angular
       supersonic.ui.layers.pop();
     };
 
-
       var ref = new Firebase("https://scorching-fire-12.firebaseio.com/events");
       // download the data into a local object
       $scope.events = $firebaseArray(ref);
@@ -61,6 +60,12 @@ angular
         window.localStorage.setItem("clickedEvent",JSON.stringify(e));
         // window.localStorage.setItem("list_of_attendees", JSON.stringify(list_of_attendees));
       };
+
+
+      	$scope.addEvent = function() {
+      		var newView = new supersonic.ui.View("tabs#addEvent");
+      		supersonic.ui.layers.push(newView);
+      	}
 
       $scope.logout = function() {
         alert("signed out");
