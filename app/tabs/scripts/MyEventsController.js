@@ -10,32 +10,52 @@ angular
       store.remove("access_token")
       var url = "https://api.linkedin.com/v1/people/~/picture-urls::(original)?oauth2_access_token=" + token
       var url = url.replace(/['"]+/g, '');
-      alert(url);
+      // alert(url);
       var win = window.open(url, '_blank', 'hidden=no')
       // win.onload = function(){
       //   alert("loaded");
       // }
       // alert("worked")
+
       win.addEventListener('loadstop', function(event) {
-        setTimeout(function() {
+        // setTimeout(function() {
           alert("loadstop");
           alert(event.url)
-          // win.executeScript(
-          //   {code: "document.body"},
-          //   function(values) {
-          //     alert("inside")
-          //     alert(values[0]);
-          // });
-          var doc = window.document;
-          alert(doc.documentElement.innerHTML)
+          win.executeScript(
+            {code: "document.documentElement.innerHTML"},
+            function(html) {
+              alert("inside")
+              alert(html);
+              console.log(html);
+          });
+          // var doc = window.document;
+          // alert(angular.toJson(doc.documentElement.innerHTML));
           // var img_url = doc.getElementsByClassName("stopButton")
           // var doc = window.document;
           // alert(doc.picture-url)
-          win.close();
-          win.document.close(); 
-        }, 2500);
+          // win.close();
+          // win.document.close(); 
+        // }, 2500);
       });
 
+      // setInterval(function() {
+      //     alert("loadstop");
+      //     // alert(event.url)
+      //     win.executeScript(
+      //       {code: "document.documentElement.innerHTML"},
+      //       function(html) {
+      //         alert("inside")
+      //         alert(html);
+      //         console.log(html);
+      //     });
+      //     // var doc = window.document;
+      //     // alert(angular.toJson(doc.documentElement.innerHTML));
+      //     // var img_url = doc.getElementsByClassName("stopButton")
+      //     // var doc = window.document;
+      //     // alert(doc.picture-url)
+      //     win.close();
+      //     // win.document.close(); 
+      // }, 5000);
 
       $scope.events.$loaded().then(function() {
         for (var i = 0; i < $scope.events.length; i++) {
