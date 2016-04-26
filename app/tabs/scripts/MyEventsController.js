@@ -1,10 +1,23 @@
-angular 
+angular
   .module('tabs')
   .controller("MyEventsController", function ($scope, $firebaseArray, auth, store, supersonic, Users, updateLocalStorage) {
     $scope.user = store.get('profile').name || 'guest';
 
       // update localStorage when logged out
     updateLocalStorage();
+
+      // add event listener for updating event info when logging out
+      window.addEventListener("message", function(event) {
+        var keyList = ['profile', 'token', 'uid', 'user_id', 'refreshToken'];
+        for (key in event.data) {
+          // note this view is always rendered when logging in, no need to
+          // monitor login event and updateMyEvents() twice
+          if (keyList.indexOf(key) > -1 && event.data[key] == null) {
+            updateMyEvents();
+            return;
+          }
+        }
+      });
 
     // load login page
     function loadLogin() {
@@ -28,17 +41,25 @@ angular
         $scope.myEvents=[];
         var uid = store.get('uid');
         // console.log(uid);
-        $scope.events.forEach(function(event) {
-          // console.log("event " + event.$id + "has attendees "
-          //   + JSON.stringify(event.attendees));
-          event.attendees.forEach(function(attendee) {
-            if (uid === attendee.id) {
-              var date = new Date(event.date);
-              event.date = date;
-              $scope.myEvents.push(event);
+        if(uid) {
+          $scope.events.forEach(function(event) {
+            // console.log("event " + event.$id + "has attendees "
+            //   + JSON.stringify(event.attendees));
+            if (event.attendees && event.attendees.length > 0) {
+              event.attendees.forEach(function(attendee) {
+                if (uid === attendee.id) {
+                  var date = new Date(event.date);
+                  event.date = date;
+                  $scope.myEvents.push(event);
+                }
+              });
             }
           });
-        });
+        }
+        else {
+          loadLogin();
+        }
+
       };
 
     //make attended default value

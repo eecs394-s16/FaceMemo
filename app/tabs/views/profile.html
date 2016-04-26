@@ -9,7 +9,16 @@
 
   <div class="padding">
     <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
-    <div ng-hide="showSpinner">
+
+    <div ng-hide="attendee">
+      <h2>Welcome, guest!</h2>
+      <br>
+      <br>
+      <br>
+      <a href="" ng-click="login()" value="Log in" class="button button-full button-calm">Log in</a>
+    </div>
+
+    <div ng-show="attendee">
 
       <div class="imagelarge">
         <img class="profilepic" ng-src="{{attendee.image}}"></img>
@@ -17,7 +26,7 @@
 
       <div class="center attendeeinfo">
         <h2 ng-bind="attendee.name"></h2>
-        <p> <span ng-bind="attendee.title"></span></p> 
+        <p> <span ng-bind="attendee.title"></span></p>
         <a class="button button-positive attendeebutton" href="{{attendee.LinkedinURL}}">
           <i class="icon fa fa-linkedin"></i>
         </a>
@@ -25,12 +34,16 @@
           <i class="icon super-email"></i>
         </a>
       </div>
+
+      <div>
+        <a href="" ng-click="logout()" value="Log out" class="button button-full button-calm">Log out</a>
+      </div>
+
     </div>
+
+
   </div>
 
-  <div>
-	<input type="submit" ng-click="logout()" value="Log out"/>
-  </div>
 
-  <a href="" ng-click="logout()" value="Log out" class="button button-full button-calm">Log out</a>
+
 </div>

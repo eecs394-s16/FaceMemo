@@ -173,3 +173,6 @@
 	text-align:center;
 }
 
+.super-checkmark.role-checkmark {
+  padding: 0 5px 0 0;
+}
