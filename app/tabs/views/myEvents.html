@@ -7,7 +7,7 @@
 	</super-navbar>
   <div>
     <h2> Welcome, {{user}}!<h2>
-			<input type="submit" ng-click="logout()" value="Log out"/>
+	<input type="submit" ng-click="logout()" value="Log out"/>
   </div>
 
 	<label class="item item-radio">
@@ -27,21 +27,17 @@
 		<super-navigate location="tabs#attendees">
 			<div class="item item-body">
 				<img class="full-image" src="{{event.image}}">
-
 				<div class="row row-center">
-
 					<div class="col col-25">
 						<div class="responsive-circle">
 								<div class="day">{{event.date | date: 'd'}}</div>
 								<div class="month">{{event.date | date: 'MMM'}}</div>
 						</div>
 					</div>
-
 					<div class="col">
 							<h2>{{event.name}}</h2>
 							<h3>{{event.location}}</h3>
 					</div>
-
 				</div>
 			</div>
 		</super-navigate>
