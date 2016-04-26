@@ -1,9 +1,9 @@
 angular
   .module('tabs')
-  .controller("EventInformationController", function ($scope, $firebaseArray, supersonic, store, Events, Users, updateLocalStorage) {
-  		var ref = new Firebase("https://scorching-fire-12.firebaseio.com/users");
+  .controller("EventInformationController", function ($scope, supersonic, store, Events, Users, updateLocalStorage) {
+
       // download the data into a local object
-      $scope.users = $firebaseArray(ref);
+      $scope.users = Users.all();
 
 
       // update localStorage when logged in/out
@@ -55,6 +55,7 @@ angular
             }
           }
         });
+        $scope.$apply();
       };
 
       updateEventInfo();

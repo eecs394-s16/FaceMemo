@@ -1,6 +1,6 @@
 angular
   .module('tabs')
-  .controller("MyEventsController", function ($scope, $firebaseArray, auth, store, supersonic, Users, updateLocalStorage) {
+  .controller("MyEventsController", function ($scope, auth, store, supersonic, Users, updateLocalStorage, Events) {
     $scope.user = store.get('profile').name || 'guest';
 
       // update localStorage when logged out
@@ -25,16 +25,19 @@ angular
     };
 
 
-      var ref = new Firebase("https://scorching-fire-12.firebaseio.com/events");
+      // var ref = new Firebase("https://scorching-fire-12.firebaseio.com/events");
       // download the data into a local object
-      $scope.events = $firebaseArray(ref);
+      $scope.events = Events.all();
       $scope.myEvents = [];
 
       $scope.events.$loaded().then(function() {
         updateMyEvents();
       });
 
-      ref.on("value", updateMyEvents);
+      $scope.events.$watch(function(data) {
+        updateMyEvents();
+      });
+      // ref.on("value", updateMyEvents);
 
       // function to update myEvents for the current user
       function updateMyEvents () {

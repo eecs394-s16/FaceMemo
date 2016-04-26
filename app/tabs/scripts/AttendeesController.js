@@ -1,9 +1,9 @@
 angular
   .module('tabs')
-  .controller("AttendeesController", ["$scope", "$firebaseArray", function ($scope, $firebaseArray) {
-  	  var ref = new Firebase("https://scorching-fire-12.firebaseio.com/users");
+  .controller("AttendeesController", function ($scope, Users) {
+
       // download the data into a local object
-      $scope.users = $firebaseArray(ref);
+      $scope.users = Users.all();
       $scope.attendees = [];
       //when users gets fetched from firebase, this function runs
       $scope.users.$loaded().then(function(list_of_users) {
@@ -53,4 +53,4 @@ angular
 
 
 
-  }]);
+  });

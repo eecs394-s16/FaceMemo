@@ -43,15 +43,15 @@ angular.module('tabs')
 .service('Events', function($firebaseArray, store) {
 
   var eventsRef = new Firebase("https://scorching-fire-12.firebaseio.com/events");
-  eventsRef.authWithCustomToken(store.get('firebaseToken'), function(error, auth) {
-    if (error) {
-      // There was an error logging in, redirect the user to login page
-      // $state.go('login');
-    }
-  });
+  // eventsRef.authWithCustomToken(store.get('firebaseToken'), function(error, auth) {
+  //   if (error) {
+  //     // There was an error logging in, redirect the user to login page
+  //     // $state.go('login');
+  //   }
+  // });
   var events = $firebaseArray(eventsRef);
-  // var eventsSync = $firebase(eventsRef);
-  // var events = eventsSync.$asArray();
+
+
 
   this.all = function() {
     return events;
@@ -91,4 +91,6 @@ angular.module('tabs')
   this.delete = function(event) {
     events.$remove(event);
   };
+
+
 });

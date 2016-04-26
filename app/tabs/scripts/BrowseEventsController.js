@@ -1,9 +1,9 @@
 angular
   .module('tabs')
-  .controller("BrowseEventsController", ["$scope", "$firebaseArray", "supersonic", function ($scope, $firebaseArray, supersonic) {
-      var ref = new Firebase("https://scorching-fire-12.firebaseio.com/events");
+  .controller("BrowseEventsController", function ($scope, supersonic, Events) {
+
       //download the data into a local object
-      $scope.events = $firebaseArray(ref);
+      $scope.events = Events.all();
 
       $scope.events.$loaded().then(function() {
         for (var i = 0; i < $scope.events.length; i++) {
@@ -27,4 +27,4 @@ angular
         // window.localStorage.setItem("clicked_event", JSON.stringify(message));
         window.localStorage.setItem("clicked_event", angular.toJson(e));
       }
-  }]);
+  });
