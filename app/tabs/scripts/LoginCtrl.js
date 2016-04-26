@@ -63,7 +63,8 @@ angular
               image: profile.picture,
               email: profile.email,
               title: profile.headline,
-              myEvents: [" "] // empty myEvents list
+              myEvents: [" "],
+              defaultRole: "student" // empty myEvents list
             });
           }
         })
