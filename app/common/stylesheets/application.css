@@ -4,6 +4,11 @@
   font-weight: 600;
 }
 
+.loginpage {
+	background-color: #00635D;
+	color: #00635D;
+}
+
 .two-col-special {
     border: 0;
     overflow: auto;
@@ -46,6 +51,12 @@
 	margin: 5% 18% 5% 18%;
 }
 
+.imagelogin {
+	margin: auto;
+  	position: absolute;
+  	top: 0; left: 0; bottom: 0; right: 0;
+}
+
 .check {
 	color: #1ABC9C;
 	background-color: #1ABC9C;
@@ -73,7 +84,8 @@
 }
 
 .padding {
-	margin-left: 3%;
+	margin-left: 5%;
+	margin-right: 5%;
 }
 
 .center {
