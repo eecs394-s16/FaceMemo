@@ -59,7 +59,7 @@ angular.module('tabs')
 
   this.add = function(event) {
 
-    events.$add(event);
+    return events.$add(event);
   };
 
   this.get = function(id) {

@@ -1,0 +1,38 @@
+<div class="padding" ng-controller="AddEventCtrl">
+
+  <super-navbar>
+    <super-navbar-title>
+      Add Event
+    </super-navbar-title>
+  </super-navbar>
+
+  <div class="list">
+    <label class="item item-input">
+      <span class="input-label">Event Name</span>
+      <input type="text" ng-model="name">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Location</span>
+      <input type="text" ng-model="location">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Description</span>
+      <input type="text" ng-model="description">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Date</span>
+      <input type="date" ng-model="date">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Start Time</span>
+      <input type="time" ng-model="starttime">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">End Time</span>
+      <input type="time" ng-model="endtime">
+    </label>
+  </div>
+  <div class = "padding">
+    <button class="button button-block button-positive" ng-click="submit()">Submit</button>
+  </div>
+</div>
