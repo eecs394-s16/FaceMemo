@@ -2,7 +2,7 @@ angular
   .module('tabs')
   .controller("MyEventsController", function ($scope, auth, store, supersonic, Users, updateLocalStorage, Events) {
     $scope.user = store.get('profile').name || 'guest';
-
+    $scope.eventTab = 'myEvents';
       // update localStorage when logged out
     updateLocalStorage();
 
@@ -34,11 +34,12 @@ angular
 
       $scope.events.$loaded().then(function() {
         updateMyEvents();
+        $scope.events.$watch(function(data) {
+          updateMyEvents();
+        });
       });
 
-      $scope.events.$watch(function(data) {
-        updateMyEvents();
-      });
+
       // ref.on("value", updateMyEvents);
 
       // function to update myEvents for the current user
@@ -47,6 +48,7 @@ angular
         var uid = store.get('uid');
         // console.log(uid);
         if(uid) {
+          console.log("all events: " +$scope.events);
           $scope.events.forEach(function(event) {
             // console.log("event " + event.$id + "has attendees "
             //   + JSON.stringify(event.attendees));
@@ -55,6 +57,7 @@ angular
                 if (uid === attendee.id) {
                   var date = new Date(event.date);
                   event.date = date;
+                  console.log("adding event"+event.$id + "from user " + uid);
                   $scope.myEvents.push(event);
                 }
               });
@@ -84,6 +87,7 @@ angular
       //pass data into the eventInformation view specifying which event's information to show
       $scope.clickedEvent = function(e) {
       	// var list_of_attendees = e.attendees;
+        console.log("clicked event: " + e.$id);
         window.localStorage.setItem("clickedEvent",JSON.stringify(e));
         // window.localStorage.setItem("list_of_attendees", JSON.stringify(list_of_attendees));
       };

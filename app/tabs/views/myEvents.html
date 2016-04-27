@@ -1,47 +1,85 @@
-<div class="padding" ng-controller="MyEventsController">
-
+<div class="padding">
 	<super-navbar>
 		<super-navbar-title>
-			My Events
+			Events
 		</super-navbar-title>
 	</super-navbar>
-  <div>
-    <h2> Welcome, {{user}}!<h2>
+
+  <!-- myEvents part -->
+  <div ng-controller="MyEventsController">
+    <div>
+      <h2> Welcome, {{user}}!<h2>
+    </div>
+
+  	<label class="item item-radio">
+  		<input type="radio" name="group" value="myEvents" ng-model="eventTab">
+  		<div class="item-content">
+  			My Events
+  		</div>
+  	</label>
+  	<label class="item item-radio">
+  		<input type="radio" name="group" value="browseEvents" ng-model="eventTab">
+  		<div class="item-content">
+  			Browse events
+  		</div>
+  	</label>
+
+    <div ng-show="eventTab === 'myEvents'">
+    	<div class="list card" ng-repeat="event in myEvents" ng-click="clickedEvent(event)">
+    		<super-navigate location="tabs#attendees">
+    			<div class="item item-body">
+    				<img class="full-image" src="{{event.image}}">
+    				<div class="row row-center">
+    					<div class="col col-25">
+    						<div class="responsive-circle">
+    								<div class="day">{{event.date | date: 'd'}}</div>
+    								<div class="month">{{event.date | date: 'MMM'}}</div>
+    						</div>
+    					</div>
+    					<div class="col">
+    							<h2>{{event.name}}</h2>
+    							<h3>{{event.location}}</h3>
+    					</div>
+    				</div>
+    			</div>
+    		</super-navigate>
+    	</div>
+    </div>
+
+
+
+    <div ng-show="eventTab === 'browseEvents'" ng-controller="BrowseEventsController">
+
+      <div class="list list-inset">
+        <label class="item item-input">
+          <i class="icon super-search placeholder-icon"></i>
+          <input type="text" ng-model="query" placeholder="Search">
+        </label>
+      </div>
+
+      <div class="list card" ng-repeat="event2 in events | filter: query" ng-click="clickedEvent(event2)">
+        <super-navigate location="tabs#eventinformation">
+          <div class="item item-body">
+            <img class="full-image" src="{{event2.image}}">
+            <div class="row row-center">
+              <div class="col col-25">
+                <div class="responsive-circle">
+                    <div class="day">{{event2.date | date: 'd'}}</div>
+                    <div class="month">{{event2.date | date: 'MMM'}}</div>
+                </div>
+              </div>
+
+              <div class="col">
+                  <h2>{{event2.name}}</h2>
+                  <h3>{{event2.location}}</h3>
+              </div>
+            </div>
+          </div>
+        </super-navigate>
+      </div>
+    </div>
   </div>
 
-	<label class="item item-radio">
-		<input type="radio" name="group" value="attended" ng-model="eventFilter">
-		<div class="item-content">
-			Attended
-		</div>
-	</label>
-	<label class="item item-radio">
-		<input type="radio" name="group" value="created" ng-model="eventFilter">
-		<div class="item-content">
-			Created
-		</div>
-	</label>
-
-	<div class="list card" ng-repeat="event in myEvents | filter: ownerFilter" ng-click="clickedEvent(event)">
-		<super-navigate location="tabs#attendees">
-			<div class="item item-body">
-				<img class="full-image" src="{{event.image}}">
-				<div class="row row-center">
-					<div class="col col-25">
-						<div class="responsive-circle">
-								<div class="day">{{event.date | date: 'd'}}</div>
-								<div class="month">{{event.date | date: 'MMM'}}</div>
-						</div>
-					</div>
-					<div class="col">
-							<h2>{{event.name}}</h2>
-							<h3>{{event.location}}</h3>
-					</div>
-				</div>
-			</div>
-		</super-navigate>
-	</div>
-
-	<input type="submit" ng-click="addEvent()" value="Add Event"/>
 
 </div>
+
