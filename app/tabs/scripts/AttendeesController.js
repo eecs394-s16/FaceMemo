@@ -18,7 +18,7 @@ angular
     			var user_id = list_of_attendees[i].id;
     			var rec = list_of_users.$getRecord(user_id);
           //temporarily use defaulRole instead of role registered for each event
-          rec.role = rec.defaultRole;
+          rec.role = list_of_attendees[i].role;
     			$scope.attendees.push(rec);
     		}
   	  });
