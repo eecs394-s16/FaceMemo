@@ -41,19 +41,20 @@ angular
 
     // load a new login page in tab 'My Events'
     function loadLogin() {
-      var view = new supersonic.ui.View({
-        location: "tabs#login",
-        id: "login"
-      });
-      // select tab 'My Events', 1st tab from the left
-      supersonic.ui.tabs.select(0).then(function() {
-        console.log('switched to tab MyEvents');
-        view.start("login").then( function(startedView) {
-          supersonic.ui.layers.replace(startedView);
-        });
-      }, function(error) {
-        console.log("switching tab error" + error);
-      });
+      supersonic.ui.initialView.show();
+      // var view = new supersonic.ui.View({
+      //   location: "tabs#login",
+      //   id: "login"
+      // });
+      // // select tab 'My Events', 1st tab from the left
+      // supersonic.ui.tabs.select(0).then(function() {
+      //   console.log('switched to tab MyEvents');
+      //   view.start("login").then( function(startedView) {
+      //     supersonic.ui.layers.replace(startedView);
+      //   });
+      // }, function(error) {
+      //   console.log("switching tab error" + error);
+      // });
     };
 
       $scope.login = loadLogin;

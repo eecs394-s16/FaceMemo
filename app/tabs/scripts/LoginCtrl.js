@@ -10,8 +10,23 @@ angular
 
 
     function loadMyEvents() {
-      var newView = new supersonic.ui.View("tabs#myEvents");
-      supersonic.ui.layers.push(newView);
+      var animation = supersonic.ui.animate("curlDown");
+      supersonic.ui.initialView.dismiss(animation);
+      // var newView = new supersonic.ui.View({
+      //   location: "tabs#myEvents",
+      //   id: "myEvents"
+      // });
+
+      // // var currentViewID = supersonic.ui.views.current.getID();
+      // // console.log(currentViewID);
+
+      // // supersonic.ui.layers.push(newView);
+      // // supersonic.ui.layers.pop();
+      // newView.start("myEvents").then( function(startedView) {
+      //   var animation = supersonic.ui.animate("curlDown");
+
+      //   // supersonic.ui.layers.push(newView);
+      // });
     };
 
     // if logged in, skip auth page
@@ -27,6 +42,7 @@ angular
 
       if (store.get('profile')) {
         console.log(store.get('profile'));
+
         loadMyEvents();
         return;
       }

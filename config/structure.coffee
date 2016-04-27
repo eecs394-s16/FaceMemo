@@ -5,9 +5,9 @@ module.exports =
   # See styling options for tabs and other native components in app/common/native-styles/ios.css or app/common/native-styles/android.css
   tabs: [
     {
-      title: "My Events"
-      id: "index"
-      location: "tabs#login" 
+      title: "Events"
+      id: "events"
+      location: "tabs#myEvents"
     }
     {
       title: "Profile"
@@ -40,6 +40,6 @@ module.exports =
   #   options:
   #     animation: "swingingDoor"
   #
-  # initialView:
-  #   id: "initialView"
-  #   location: "example#initial-view"
+  initialView:
+    id: "login"
+    location: "tabs#login"
