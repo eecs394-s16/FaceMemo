@@ -51,7 +51,7 @@ angular
             ref.child(profile.user_id).update({
               name: profile.name,
               LinkedinURL: profile.publicProfileUrl,
-              image: profile.picture,
+              // image: profile.picture, (taking out because can't get original image)
               email: profile.email,
               title: profile.headline
             })
@@ -62,7 +62,8 @@ angular
               LinkedinURL: profile.publicProfileUrl,
               image: profile.picture,
               email: profile.email,
-              title: profile.headline
+              title: profile.headline,
+              myEvents: [" "] // empty myEvents list
             });
           }
         })
