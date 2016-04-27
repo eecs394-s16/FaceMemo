@@ -25,6 +25,7 @@ angular
       	// }
         // $scope.event = message;
         // window.localStorage.setItem("clicked_event", JSON.stringify(message));
+        console.log("clicked event: " + e.$id);
         window.localStorage.setItem("clicked_event", angular.toJson(e));
       }
   });
