@@ -21,7 +21,8 @@ angular
 
     // load login page
     function loadLogin() {
-      supersonic.ui.layers.pop();
+      // supersonic.ui.layers.pop();
+      supersonic.ui.initialView.show();
     };
 
 
