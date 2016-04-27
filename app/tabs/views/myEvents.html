@@ -26,7 +26,7 @@
 
     <div ng-show="eventTab === 'myEvents'">
     	<div class="list card" ng-repeat="event in myEvents" ng-click="clickedEvent(event)">
-    		<super-navigate location="tabs#attendees">
+    		
     			<div class="item item-body">
     				<img class="full-image" src="{{event.image}}">
     				<div class="row row-center">
@@ -42,7 +42,7 @@
     					</div>
     				</div>
     			</div>
-    		</super-navigate>
+    		
     	</div>
     </div>
 
@@ -58,7 +58,7 @@
       </div>
 
       <div class="list card" ng-repeat="event2 in events | filter: query" ng-click="clickedEvent(event2)">
-        <super-navigate location="tabs#eventinformation">
+
           <div class="item item-body">
             <img class="full-image" src="{{event2.image}}">
             <div class="row row-center">
@@ -75,7 +75,7 @@
               </div>
             </div>
           </div>
-        </super-navigate>
+
       </div>
     </div>
   </div>

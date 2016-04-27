@@ -27,6 +27,7 @@ angular
         $scope.event = JSON.parse(clicked_event);
         var date = new Date($scope.event.date);
         $scope.event.date = date;
+        updateEventInfo();
       });
 
       //update event information
@@ -58,7 +59,7 @@ angular
         $scope.$apply();
       };
 
-      updateEventInfo();
+
 
 
       //join and unjoin
@@ -135,11 +136,17 @@ angular
         var list_of_attendees = $scope.event.attendees;
         window.localStorage.setItem("clickedEvent", JSON.stringify($scope.event));
         window.localStorage.setItem("list_of_attendees", JSON.stringify(list_of_attendees));
+        $rootScope.views.attendees.isStarted().then(function() {
+          supersonic.ui.layers.push($rootScope.views.attendees);
+        });
       };
 
       //keeps track of which attendee the user clicks
       $scope.clickedAttendee = function(attendee) {
         window.localStorage.setItem("clicked_attendee", JSON.stringify(attendee));
         $scope.test = attendee;
+        $rootScope.views.show.isStarted().then(function() {
+          supersonic.ui.layers.push($rootScope.views.show);
+        });
       };
   });

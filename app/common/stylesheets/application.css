@@ -83,6 +83,10 @@
 	display: inline;
 }
 
+.inline-block {
+	display: inline-block;
+}
+
 .padding {
 	margin-left: 5%;
 	margin-right: 5%;
