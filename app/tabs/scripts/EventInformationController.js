@@ -132,6 +132,7 @@ angular
 	    //pass data containing list of attendees into the attendees view
       $scope.clickedEvent = function() {
         var list_of_attendees = $scope.event.attendees;
+        window.localStorage.setItem("clickedEvent", JSON.stringify($scope.event));
         window.localStorage.setItem("list_of_attendees", JSON.stringify(list_of_attendees));
       };
 
