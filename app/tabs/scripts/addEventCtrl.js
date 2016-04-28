@@ -18,18 +18,16 @@ angular
 			starttime: $scope.starttime.toString(),
 			stoptime: $scope.endtime.toString(),
 			attendees: [thisAttendee],
+			image: "http://www.news.gatech.edu/hg/image/223541/original",
 			owner: myuid
 		};
 
-		alert("here")
 		Events.add(newEvent).then(function(ref) {
 		$scope.id = ref.key();
-		alert("here");
 		var currentUser = Users.get(myuid);
-		alert("here4" + angular.toJson(currentUser));
+		// alert("here4" + angular.toJson(currentUser));
 		console.log($scope.id);
 		currentUser.myEvents.push($scope.id);
-		alert("here1");
 		Users.save(currentUser);
 		alert("Your event was successfully created")
 		supersonic.ui.layers.pop();
