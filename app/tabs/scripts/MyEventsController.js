@@ -30,7 +30,9 @@ angular
 
       // download the data into a local object
       $scope.events = Events.all();
-      $scope.myEvents = [];
+      //$scope.myEvents = [];
+      $scope.createdEvents = [];
+      $scope.joinedEvents = [];
 
       $scope.events.$loaded().then(function() {
         updateMyEvents();
@@ -44,7 +46,9 @@ angular
 
       // function to update myEvents for the current user
       function updateMyEvents () {
-        $scope.myEvents=[];
+        //$scope.myEvents=[];
+        $scope.createdEvents = [];
+        $scope.joinedEvents = [];
         var uid = store.get('uid');
         // console.log(uid);
         if(uid) {
@@ -55,10 +59,14 @@ angular
             if (event.attendees && event.attendees.length > 0) {
               event.attendees.forEach(function(attendee) {
                 if (uid === attendee.id) {
+                	if(event.owner === uid) {
+                		$scope.createdEvents.push(event)
+                	}
+                	else {
+                		$scope.joinedEvents.push(event)
+                	}
                   var date = new Date(event.date);
                   event.date = date;
-                  console.log("adding event"+event.$id + "from user " + uid);
-                  $scope.myEvents.push(event);
                 }
               });
             }
@@ -70,18 +78,18 @@ angular
 
       };
 
-    //make attended default value
-	$scope.eventFilter = 'attended';
+ //    //make attended default value
+	// $scope.eventFilter = 'attended';
 
-	//custom filter function for owner
-	$scope.ownerFilter = function (event) {
-		var this_uid = store.get('user_id');
-		if($scope.eventFilter === 'attended')
-			return true;
-		else if($scope.eventFilter === 'created' && event.owner === this_uid)
-			return true;
-		return false;
-	}
+	// //custom filter function for owner
+	// $scope.ownerFilter = function (event) {
+	// 	var this_uid = store.get('user_id');
+	// 	if($scope.eventFilter === 'attended')
+	// 		return true;
+	// 	else if($scope.eventFilter === 'created' && event.owner === this_uid)
+	// 		return true;
+	// 	return false;
+	// }
 
 
       //pass data into the eventInformation view specifying which event's information to show
