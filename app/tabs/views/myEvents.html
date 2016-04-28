@@ -26,9 +26,11 @@
 
 
 	    <div ng-show="eventTab === 'myEvents'">
-				<div class="item item-divider h3text">
+				<div class="item item-divider h3text" ng-show = "createdEvents.length > 0">
          Created Events
   	    </div>
+  	    
+
 	    	<div class="list card" ng-repeat="event in createdEvents" ng-click="clickedEvent(event)">
           <super-navigate location="tabs#attendees">
 	    		
@@ -54,6 +56,7 @@
     
 
 				<div class="item item-divider h3text">
+				<br>
          Joined Events
   	    </div>
 	    	<div class="list card" ng-repeat="event in joinedEvents" ng-click="clickedEvent(event)">
