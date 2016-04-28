@@ -168,9 +168,17 @@
 	display: inline-block;
 }
 
-.item-radio:checked {
-}
+:checked + .item-selected {
+	font-weight: bold;
+	color: #00635D;
+}	
 
+:checked + .border {
+	border-color: #00635D;
+}	
+/*.item-radio:checked {
+	background-color: #00635D;
+}*/
 
 .item-radio {
     width: 49%;
@@ -178,12 +186,23 @@
     border: 1px;
     display: inline-block;
     padding: 0px;
+    color: black;
+    font-size: 17px;
 }
 
 .item-radio .item-content.item-role{
 	padding: 0px;
 	text-align:center;
 }
+
+.item-radio .item-content.text-fit {
+	padding: 12px 0px 12px 0px;
+	text-align: center
+}
+
+/*.height {
+	height: 35px;
+}*/
 
 .super-checkmark.role-checkmark {
   padding: 0 5px 0 0;
