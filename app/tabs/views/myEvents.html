@@ -25,7 +25,29 @@
 	  	</label>
 
 	    <div ng-show="eventTab === 'myEvents'">
-	    	<div class="list card" ng-repeat="event in myEvents" ng-click="clickedEvent(event)">
+	    	<h3>Created Events:</h3>
+	    	<div class="list card" ng-repeat="event in createdEvents" ng-click="clickedEvent(event)">
+	    		<super-navigate location="tabs#attendees">
+	    			<div class="item item-body">
+	    				<img class="full-image" src="{{event.image}}">
+	    				<div class="row row-center">
+	    					<div class="col col-25">
+	    						<div class="responsive-circle">
+	    								<div class="day">{{event.date | date: 'd'}}</div>
+	    								<div class="month">{{event.date | date: 'MMM'}}</div>
+	    						</div>
+	    					</div>
+	    					<div class="col">
+	    							<h2>{{event.name}}</h2>
+	    							<h3>{{event.location}}</h3>
+	    					</div>
+	    				</div>
+	    			</div>
+	    		</super-navigate>
+	    	</div>
+
+	    	<h3>Joined Events</h3>
+	    	<div class="list card" ng-repeat="event in joinedEvents" ng-click="clickedEvent(event)">
 	    		<super-navigate location="tabs#attendees">
 	    			<div class="item item-body">
 	    				<img class="full-image" src="{{event.image}}">
