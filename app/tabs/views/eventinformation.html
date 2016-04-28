@@ -57,20 +57,20 @@
     </div>
 
   <div>
-    
+    <super-navigate location="tabs#attendees">
     <a class="button icon-right super-chevron-right button-clear button-dark" ng-click="clickedEvent()">Attendees</a>
-    
+    </super-navigate>
   </div>
 
   <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
   <div ng-hide="showSpinner">
     <ul class="list" ng-hide="event.attendees.length == 0">
 
-      
+      <super-navigate location="tabs#show">
         <div ng-repeat="attendee in attendees" class="imagesmall">
           <img class="profilepic" ng-src="{{attendee.image}}" ng-click="clickedAttendee(attendee)"></img>
         </div>
-      
+      </super-navigate>
 
     </ul>
 

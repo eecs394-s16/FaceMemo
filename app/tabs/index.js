@@ -20,7 +20,7 @@ angular.module('tabs', [
   return function() {
     function messageReceived(event) {
         for (key in event.data) {
-          var keyList = ['profile', 'token', 'uid', 'user_id', 'refreshToken'];
+          var keyList = ['profile', 'token', 'uid', 'user_id', 'refreshToken', 'newViews'];
           if (keyList.indexOf(key) > -1) {
             console.log(key);
             store.set(key, event.data[key]);

@@ -1,9 +1,11 @@
 angular
   .module('tabs')
-  .controller("BrowseEventsController", function ($scope, supersonic, Events, $rootScope) {
+  .controller("BrowseEventsController", function (updateLocalStorage, $scope, supersonic, Events, store) {
 
       //download the data into a local object
       $scope.events = Events.all();
+      updateLocalStorage();
+
 
       $scope.events.$loaded().then(function() {
         for (var i = 0; i < $scope.events.length; i++) {
@@ -27,8 +29,14 @@ angular
         // window.localStorage.setItem("clicked_event", JSON.stringify(message));
         console.log("clicked event: " + e.$id);
         window.localStorage.setItem("clicked_event", angular.toJson(e));
-        $rootScope.views.eventInfo.isStarted().then(function() {
-          supersonic.ui.layers.push($rootScope.views.eventInfo);
+
+        var newViews = store.get('newViews');
+        supersonic.ui.views.find(newViews.eventInfo.id).then( function(startedView) {
+          supersonic.ui.layers.push(startedView);
         });
-      }
+      };
+
+
+      
+
   });

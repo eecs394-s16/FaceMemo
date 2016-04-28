@@ -37,8 +37,10 @@
 
 
   <div class="row">
-    <ul class="list two-col-special" ng-hide="attendeess.length == 0">
-        
+
+    <ul class="list two-col-special" ng-hide="attendees.length == 0">
+
+
           <!-- <li class="item item-icon-right"> -->
           <li ng-repeat="attendee in attendees | filter: query | filter: roleFilter" ng-click="clickedAttendee(attendee)">
             <img class="profilepic" ng-src="{{attendee.image}}"></img>
@@ -47,7 +49,9 @@
             </div>
           </li>
 
+
         
+
 
     </ul>
 

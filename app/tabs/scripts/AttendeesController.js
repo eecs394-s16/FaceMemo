@@ -1,13 +1,13 @@
 angular
   .module('tabs')
-  .controller("AttendeesController", function (supersonic, $scope, Users) {
+  .controller("AttendeesController", function ($scope, Users, supersonic, store) {
 
       // download the data into a local object
       $scope.users = Users.all();
 
-      //when users gets fetched from firebase, this function runs
-      supersonic.ui.views.current.whenVisible(function() {
-        $scope.attendees = [];
+      supersonic.ui.views.current.whenVisible(function() {          
+        $scope.attendees = [];        
+        //when users gets fetched from firebase, this function runs
         $scope.users.$loaded().then(function(list_of_users) {
           var eventString = window.localStorage.getItem("clickedEvent");
           $scope.clickedEvent = JSON.parse(eventString);
@@ -25,7 +25,7 @@ angular
           }
         });
       });
-      
+
 
 
       // Setup roleFilter
@@ -53,9 +53,15 @@ angular
       $scope.clickedAttendee = function(attendee) {
         window.localStorage.setItem("clicked_attendee", JSON.stringify(attendee));
         $scope.test = attendee;
-        $rootScope.views.show.isStarted().then(function() {
-          supersonic.ui.layers.push($rootScope.views.show);
+
+        console.log(angular.toJson(attendee));
+
+        var newViews = store.get('newViews');
+        supersonic.ui.views.find(newViews.show.id).then( function(startedView) {
+          supersonic.ui.layers.push(startedView);
         });
+
+
       };
 
 

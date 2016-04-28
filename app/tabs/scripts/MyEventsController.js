@@ -90,10 +90,13 @@ angular
       	// var list_of_attendees = e.attendees;
         console.log("clicked event: " + e.$id);
         window.localStorage.setItem("clickedEvent",JSON.stringify(e));
-        $rootScope.views.attendees.isStarted().then(function() {
-          supersonic.ui.layers.push($rootScope.views.attendees);
+        var newViews = store.get('newViews');
+        // console.log("newViews: " + angular.toJson(newViews));
+
+        supersonic.ui.views.find(newViews.attendees.id).then( function(startedView) {
+          // console.log("find view: " + angular.toJson(startedView));
+          supersonic.ui.layers.push(startedView);
         });
-        // window.localStorage.setItem("list_of_attendees", JSON.stringify(list_of_attendees));
       };
 
 
@@ -119,8 +122,9 @@ angular
         loadLogin();
       };
 
-       // preload views
-    $rootScope.views = {};
+
+   // preload views
+    newViews= {};
     [{
       location: 'tabs#attendees',
       id: 'attendees'
@@ -131,8 +135,14 @@ angular
       location: 'tabs#show',
       id: 'show'
     }].forEach(function(view) {
-      $rootScope.views[view.id] = new supersonic.ui.View(view);
-      $rootScope.views[view.id].start();
+      newViews[view.id] = new supersonic.ui.View(view);
+      newViews[view.id].start();
     });
+    store.set(newViews);
+
+    window.postMessage({
+          'newViews': store.get('newViews')
+        });
+
 
   });
