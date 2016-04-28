@@ -50,7 +50,7 @@ tab-bar-item#internet {
   background-image: url(icons/search.svg);
 }
 
-tab-bar-item#browse {
+tab-bar-item#events {
    background-image: url(icons/eventsList.svg);
 }
 
