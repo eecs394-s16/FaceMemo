@@ -66,8 +66,8 @@
   <div ng-hide="showSpinner">
     <ul class="list" ng-hide="event.attendees.length == 0">
 
-      <super-navigate location="tabs#show" ng-repeat="attendee in attendees">
-        <div class="imagesmall">
+      <super-navigate location="tabs#show">
+        <div ng-repeat="attendee in attendees" class="imagesmall">
           <img class="profilepic" ng-src="{{attendee.image}}" ng-click="clickedAttendee(attendee)"></img>
         </div>
       </super-navigate>

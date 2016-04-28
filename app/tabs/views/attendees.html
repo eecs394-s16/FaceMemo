@@ -37,17 +37,21 @@
 
 
   <div class="row">
-    <ul class="list two-col-special" ng-hide="attendeess.length == 0">
-        <super-navigate location="tabs#show" ng-repeat="attendee in attendees | filter: query | filter: roleFilter">
+
+    <ul class="list two-col-special" ng-hide="attendees.length == 0">
+
+
           <!-- <li class="item item-icon-right"> -->
-          <li ng-click="clickedAttendee(attendee)">
+          <li ng-repeat="attendee in attendees | filter: query | filter: roleFilter" ng-click="clickedAttendee(attendee)">
             <img class="profilepic" ng-src="{{attendee.image}}"></img>
             <div class="center">
               <span class="inline">{{attendee.name}}</span>
             </div>
           </li>
 
-        </super-navigate>
+
+        
+
 
     </ul>
 

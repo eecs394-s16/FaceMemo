@@ -1,6 +1,6 @@
 angular
   .module('tabs')
-  .controller("EventInformationController", function ($scope, supersonic, store, Events, Users, updateLocalStorage) {
+  .controller("EventInformationController", function ($rootScope, $scope, supersonic, store, Events, Users, updateLocalStorage) {
 
       // download the data into a local object
       $scope.users = Users.all();
@@ -27,10 +27,11 @@ angular
         $scope.event = JSON.parse(clicked_event);
         var date = new Date($scope.event.date);
         $scope.event.date = date;
+        updateEventInfo();
       });
 
       //update event information
-      function updateEventInfo () {
+      function updateEventInfo() {
         $scope.attendees = [];
         $scope.joinStatus = 'Join';
         $scope.joinRole = 'student';
@@ -55,10 +56,10 @@ angular
             }
           }
         });
-        $scope.$apply();
+        // $scope.$apply();
       };
 
-      updateEventInfo();
+
 
 
       //join and unjoin
@@ -132,14 +133,17 @@ angular
 
 	    //pass data containing list of attendees into the attendees view
       $scope.clickedEvent = function() {
+        console.log("attendees clicked in eventInformation page!");
         var list_of_attendees = $scope.event.attendees;
         window.localStorage.setItem("clickedEvent", JSON.stringify($scope.event));
         window.localStorage.setItem("list_of_attendees", JSON.stringify(list_of_attendees));
+
       };
 
       //keeps track of which attendee the user clicks
       $scope.clickedAttendee = function(attendee) {
         window.localStorage.setItem("clicked_attendee", JSON.stringify(attendee));
         $scope.test = attendee;
+
       };
   });

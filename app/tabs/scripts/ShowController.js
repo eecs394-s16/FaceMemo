@@ -4,5 +4,7 @@ angular
       supersonic.ui.views.current.whenVisible(function() {
           var clicked_attendee = window.localStorage.getItem("clicked_attendee");
           $scope.attendee = JSON.parse(clicked_attendee);
+          $scope.$apply();
+          console.log(angular.toJson($scope.attendee));
       });
   });

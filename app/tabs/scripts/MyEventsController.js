@@ -1,6 +1,6 @@
 angular
   .module('tabs')
-  .controller("MyEventsController", function ($scope, auth, store, supersonic, Users, updateLocalStorage, Events) {
+  .controller("MyEventsController", function ($scope, auth, store, supersonic, Users, updateLocalStorage, Events, $rootScope) {
     $scope.user = store.get('profile').name || 'guest';
     $scope.eventTab = 'myEvents';
       // update localStorage when logged out
@@ -21,7 +21,8 @@ angular
 
     // load login page
     function loadLogin() {
-      supersonic.ui.layers.pop();
+      // supersonic.ui.layers.pop();
+      supersonic.ui.initialView.show();
     };
 
 
@@ -97,7 +98,13 @@ angular
       	// var list_of_attendees = e.attendees;
         console.log("clicked event: " + e.$id);
         window.localStorage.setItem("clickedEvent",JSON.stringify(e));
-        // window.localStorage.setItem("list_of_attendees", JSON.stringify(list_of_attendees));
+        var newViews = store.get('newViews');
+        // console.log("newViews: " + angular.toJson(newViews));
+
+        supersonic.ui.views.find(newViews.attendees.id).then( function(startedView) {
+          // console.log("find view: " + angular.toJson(startedView));
+          supersonic.ui.layers.push(startedView);
+        });
       };
 
 
@@ -122,4 +129,28 @@ angular
         auth.signout();
         loadLogin();
       };
+
+
+   // preload views
+    newViews= {};
+    [{
+      location: 'tabs#attendees',
+      id: 'attendees'
+    },{
+      location: 'tabs#eventinformation',
+      id: 'eventInfo'
+    },{
+      location: 'tabs#show',
+      id: 'show'
+    }].forEach(function(view) {
+      newViews[view.id] = new supersonic.ui.View(view);
+      newViews[view.id].start();
+    });
+    store.set(newViews);
+
+    window.postMessage({
+          'newViews': store.get('newViews')
+        });
+
+
   });

@@ -1,27 +1,31 @@
 angular
   .module('tabs')
-  .controller("AttendeesController", function ($scope, Users) {
+  .controller("AttendeesController", function ($scope, Users, supersonic, store) {
 
       // download the data into a local object
       $scope.users = Users.all();
-      $scope.attendees = [];
-      //when users gets fetched from firebase, this function runs
-      $scope.users.$loaded().then(function(list_of_users) {
-        var eventString = window.localStorage.getItem("clickedEvent");
-      	$scope.clickedEvent = JSON.parse(eventString);
-        // var attendees = window.localStorage.getItem("list_of_attendees");
-		    // var list_of_attendees = JSON.parse(attendees);
-        var list_of_attendees = $scope.clickedEvent.attendees;
-    		//for each attendee, fetch his record from firebase and push it into $scope.attendees
-        for (var i = 0; i < list_of_attendees.length; i++)
-    		{
-    			var user_id = list_of_attendees[i].id;
-    			var rec = list_of_users.$getRecord(user_id);
-          //temporarily use defaulRole instead of role registered for each event
-          rec.role = list_of_attendees[i].role;
-    			$scope.attendees.push(rec);
-    		}
-  	  });
+
+      supersonic.ui.views.current.whenVisible(function() {          
+        $scope.attendees = [];        
+        //when users gets fetched from firebase, this function runs
+        $scope.users.$loaded().then(function(list_of_users) {
+          var eventString = window.localStorage.getItem("clickedEvent");
+          $scope.clickedEvent = JSON.parse(eventString);
+          // var attendees = window.localStorage.getItem("list_of_attendees");
+          // var list_of_attendees = JSON.parse(attendees);
+          var list_of_attendees = $scope.clickedEvent.attendees;
+          //for each attendee, fetch his record from firebase and push it into $scope.attendees
+          for (var i = 0; i < list_of_attendees.length; i++)
+          {
+            var user_id = list_of_attendees[i].id;
+            var rec = list_of_users.$getRecord(user_id);
+            //temporarily use defaulRole instead of role registered for each event
+            rec.role = list_of_attendees[i].role;
+            $scope.attendees.push(rec);
+          }
+        });
+      });
+
 
 
       // Setup roleFilter
@@ -49,6 +53,15 @@ angular
       $scope.clickedAttendee = function(attendee) {
         window.localStorage.setItem("clicked_attendee", JSON.stringify(attendee));
         $scope.test = attendee;
+
+        console.log(angular.toJson(attendee));
+
+        var newViews = store.get('newViews');
+        supersonic.ui.views.find(newViews.show.id).then( function(startedView) {
+          supersonic.ui.layers.push(startedView);
+        });
+
+
       };
 
 
