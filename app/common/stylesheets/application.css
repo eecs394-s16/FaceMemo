@@ -171,11 +171,11 @@
 :checked + .item-selected {
 	font-weight: bold;
 	color: #00635D;
-}	
+}
 
 :checked + .border {
 	border-color: #00635D;
-}	
+}
 /*.item-radio:checked {
 	background-color: #00635D;
 }*/
@@ -206,4 +206,7 @@
 
 .super-checkmark.role-checkmark {
   padding: 0 5px 0 0;
+}
+.h3text {
+  font-size: 20px;
 }
